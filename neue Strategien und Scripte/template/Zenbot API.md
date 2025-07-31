@@ -164,7 +164,8 @@ Achte auf Sicherheit, Authentifizierung und Kommando-Validierung
 
 
 Auf dieser Art und Weise wäre auch der gegenwärtige Kurswert als Chart ermittelbar, die jetzt schon von bzw. in der dashboard.ejs dargestellt und via Johnson abgefragt wird. Sinngemäß wäre es diese API Seite als Unterseite im Verzeichnis gesondert anzulegen. 
-Da aber Ansteuerungsbefehle wie auch die URL im Quellcode womöglich offen liegen, ist dies ein massives Sicherheitsrisioko. Fraglich ist, ob der Server &gt;SCRIPT run='server'&lt;-Tag unterstützt.
+Da aber Ansteuerungsbefehle wie auch die URL im Quellcode womöglich offen liegen, ist dies ein massives Sicherheitsrisioko. Fraglich ist, ob der Server den &lt;SCRIPT run='server'&gt;-Tag mit unterstützt. 
+Gleichfalls sollte location.href=URL eine sehr wirksame Waffe gegen Manipulation sein, wenn dies in der API Schnittstelle integriert wurde. Unbekannt ist, ob das MAN-InThe-MIDDLE einem Angreifer die Manipulation ermöglicht. Auch eine https Verbindung kann abhelfen.
 
 Möchtest du, dass ich dir einen kompletten Beispielcode (Express-Server + API + EJS-View) generiere?
 
