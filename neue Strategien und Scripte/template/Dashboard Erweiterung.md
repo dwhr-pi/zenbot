@@ -90,3 +90,21 @@ binance.ADA-USDT
 
 
 ---
+
+🧱 Weiterführende Ideen
+
+*Suchfunktion*: Filtere Coins nach Namen.
+
+*Dropdown-Menü*: Auswahl der Börse (binance, kraken, etc.).
+
+*Auto-Reload*: Aktualisierung der Liste in Intervallen.
+
+*Befehls-Konsole*: Weitere Zenbot-Befehle per UI ausführen.
+
+
+
+---
+
+🛡 Sicherheitshinweis
+
+Das direkte Ausführen von Shell-Kommandos aus dem Webfrontend ist potenziell gefährlich. Nutze entsprechende Sicherheitsmechanismen (z. B. Authentifizierung, Parameter-Validierung oder direkte API-Zugriffe), bevor du das System öffentlich zugänglich machst.  
