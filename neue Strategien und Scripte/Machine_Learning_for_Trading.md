@@ -20,6 +20,10 @@ Maschinelles Lernen wird in verschiedenen Bereichen des Handels eingesetzt:
 
 Ein gängiger Ansatz ist das **überwachte Lernen**, bei dem Modelle aus gelabelten historischen Daten lernen. **Bestärkendes Lernen (Reinforcement Learning)** ist ein weiterer Ansatz, bei dem ein Algorithmus durch Versuch und Irrtum lernt, indem er für erfolgreiche Aktionen Belohnungen erhält.
 
+
+https://github.com/stefan-jansen/machine-learning-for-trading
+https://github.com/dwhr-pi/machine-learning-for-trading
+
 ## Ressourcen auf Deutsch
 
 Obwohl viele der führenden Ressourcen auf Englisch sind, gibt es auch deutsche Informationen und Kurse:
