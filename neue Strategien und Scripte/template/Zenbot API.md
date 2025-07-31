@@ -162,5 +162,8 @@ Achte auf Sicherheit, Authentifizierung und Kommando-Validierung
 
 ---
 
+
+Auf dieser Art und Weise wäre auch der gegenwärtige Kurswert als Chart ermittelbar, die jetzt schon von bzw. in der dashboard.ejs dargestellt und via Johnson abgefragt wird. Sinngemäß wäre es diese API Seite als Unterseite im Verzeichnis gesondert anzulegen. 
+
 Möchtest du, dass ich dir einen kompletten Beispielcode (Express-Server + API + EJS-View) generiere?
 
