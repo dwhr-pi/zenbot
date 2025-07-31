@@ -70,3 +70,22 @@ document.getElementById('load-coins').addEventListener('click', () => {
 })
 </script>
 ```
+
+3 Optional: Direktes Einbinden von Zenbot-Modulen
+
+Statt 'child_process.exec' kannst du auch direkt auf das Zenbot-Modul zugreifen (z. B. via 'lib/exchange/'), um die Produkte über die Zenbot-API zu listen. Das ist performanter und sicherer – erfordert jedoch mehr Verständnis der internen Zenbot-Architektur.
+
+
+---
+
+🧪 Beispielausgabe
+
+Nach dem Klick auf „Coins laden“ wird im Frontend eine Liste wie folgt angezeigt:
+...
+binance.BTC-USDT
+binance.ETH-USDT
+binance.ADA-USDT
+...
+
+
+---
