@@ -2,6 +2,18 @@
 
 Dieses Tutorial zeigt dir, wie du das Zenbot-Web-Dashboard (`dashboard.ejs`) erweiterst, um über das Frontend Terminalbefehle auszuführen – z. B. um alle verfügbaren Coins einer Börse (wie Binance) aufzulisten.
 
+1. Eine neue Route im Zenbot-Backend (Node.js/Express) erstellen.
+
+
+2. Eine AJAX-Verbindung von 'dashboard.ejs' aus aufbauen.
+
+
+3. Im Backend entsprechende Funktionen einbauen (z. B. 'zenbot list-products' ausführen oder direkt per API auf Exchange-Daten zugreifen).
+
+
+4. Das Ergebnis im Frontend anzeigen.
+
+
 ---
 
 ## 🔧 1. Neue API-Route im Backend hinzufügen
@@ -27,3 +39,34 @@ router.get('/api/coins', (req, res) => {
 })
 
 module.exports = router
+```
+
+
+> Achte darauf, dass zenbot im PATH verfügbar ist oder nutze den vollständigen Pfad zum Skript.
+Dann stelle sicher, dass server.js die neue Route einbindet:
+
+```js
+const routes = require('./routes')
+app.use('/', routes)
+```
+
+2. Frontend (dashboard.ejs) um AJAX-Funktion erweitern
+
+Füge folgenden HTML- und JavaScript-Code zu deiner dashboard.ejs-Datei hinzu:
+```JS
+<button id="load-coins">Coins laden</button>
+<pre id="coin-output"></pre>
+
+<script>
+document.getElementById('load-coins').addEventListener('click', () => {
+  fetch('/api/coins')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('coin-output').textContent = data.output
+    })
+    .catch(err => {
+      document.getElementById('coin-output').textContent = 'Fehler beim Abrufen: ' + err
+    })
+})
+</script>
+```
