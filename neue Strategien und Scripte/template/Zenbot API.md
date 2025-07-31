@@ -129,17 +129,20 @@ Führe keine ungesicherten Eingaben direkt in exec() aus
 
 Wenn du binance als Börse benutzt, listet zenbot list-selectors u. a.:
 
+```js
 binance.BTC-USDT
 binance.ETH-USDT
+```
 ...
 
 Du kannst die Antwort nach der Börse filtern:
 
+```js
 // dashboard.ejs JavaScript
 function filterSelectorsByExchange(selectors, exchange) {
   return selectors.filter(s => s.startsWith(exchange + "."));
 }
-
+```
 
 ---
 
