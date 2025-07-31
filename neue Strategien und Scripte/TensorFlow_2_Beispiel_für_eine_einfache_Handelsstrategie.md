@@ -206,6 +206,6 @@ print(f'Test accuracy: {score}')
 Die Genauigkeit gibt an, wie oft das Modell die Preisrichtung korrekt vorhergesagt hat. Ein Wert über 0.5 (50 %) bedeutet, dass das Modell besser als zufälliges Raten ist. Professionelle Modelle erreichen oft nur geringfügig höhere Werte, die aber durch die Masse an Trades profitabel sein können.
 
 https://github.com/stefan-jansen/machine-learning-for-trading  
-https://github.com/dwhr-pi/machine-learning-for-trading 
+https://github.com/dwhr-pi/machine-learning-for-trading  
 [Simplylearn -Generative AI - Full course](https://youtu.be/JFxfm-wYUN4?si=T0wCxnWcU9jEbSzy)  
 
