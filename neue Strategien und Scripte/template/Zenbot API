@@ -38,7 +38,7 @@ Zugriff auf dashboard.ejs (Views)
 
 Zenbot bietet standardmäßig keine API – du musst dir ein kleines Express-API-Modul bauen, das Zenbot-Kommandos (z. B. list-selectors) ausführt.
 
-''''JS
+```js
 // api/zenbotController.js
 const { exec } = require("child_process");
 
@@ -50,17 +50,18 @@ exports.listSelectors = (req, res) => {
     return res.json({ selectors: stdout.split('\n').filter(Boolean) });
   });
 };
-'''
+```
 
 Dann im Express-Server registrieren:
 
+```js
 // server.js oder app.js
 const express = require("express");
 const zenbotController = require("./api/zenbotController");
 
 const app = express();
 app.get("/api/selectors", zenbotController.listSelectors);
-
+```
 
 ---
 
@@ -68,6 +69,7 @@ app.get("/api/selectors", zenbotController.listSelectors);
 
 In dashboard.ejs (oder einer verknüpften JS-Datei) kannst du nun per fetch die Daten holen:
 
+```js
 <script>
   async function fetchSelectors() {
     const res = await fetch('/api/selectors');
@@ -80,7 +82,7 @@ In dashboard.ejs (oder einer verknüpften JS-Datei) kannst du nun per fetch die 
 </script>
 
 <ul id="selector-list">Lade verfügbare Märkte...</ul>
-
+```
 
 ---
 
@@ -88,6 +90,7 @@ In dashboard.ejs (oder einer verknüpften JS-Datei) kannst du nun per fetch die 
 
 Wenn du weitere Zenbot-Kommandos (z. B. trade, sim, backfill, analyze) via API ausführbar machen willst:
 
+```js
 // api/zenbotController.js
 exports.runCommand = (req, res) => {
   const { command } = req.body;
@@ -103,6 +106,7 @@ Und dann z. B. in Express:
 
 app.use(express.json());
 app.post("/api/run", zenbotController.runCommand);
+```
 
 
 ---
