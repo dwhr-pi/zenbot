@@ -40,15 +40,15 @@ WantedBy=multi-user.target
 
 *   Laden Sie die Konfiguration neu:
     ```bash
-sudo systemctl daemon-reload
+    sudo systemctl daemon-reload
     ```
 *   Aktivieren Sie den Autostart:
     ```bash
-sudo systemctl enable zenbot.service
+    sudo systemctl enable zenbot.service
     ```
 *   Starten Sie den Dienst sofort:
     ```bash
-sudo systemctl start zenbot.service
+    sudo systemctl start zenbot.service
     ```
 
 **4. Überprüfen Sie den Status:**
