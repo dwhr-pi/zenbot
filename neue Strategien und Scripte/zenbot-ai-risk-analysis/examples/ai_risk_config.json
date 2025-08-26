@@ -1,0 +1,32 @@
+{
+  "api_url": "http://localhost:5000/api/risk",
+  "ai_provider": "ollama",
+  "model": "llama2",
+  "risk_management": {
+    "risk_threshold": 0.7,
+    "sentiment_threshold": -0.3,
+    "confidence_threshold": 0.5,
+    "emergency_stop_threshold": 0.9
+  },
+  "position_management": {
+    "enable_position_adjustment": true,
+    "max_position_reduction": 0.5,
+    "min_position_size": 0.1
+  },
+  "stop_loss_management": {
+    "enable_stop_loss_adjustment": true,
+    "max_stop_loss_tightening": 0.5,
+    "min_stop_loss_distance": 0.02
+  },
+  "trading_control": {
+    "enable_trading_pause": true,
+    "max_pause_duration": 3600000,
+    "min_pause_duration": 900000
+  },
+  "analysis": {
+    "analysis_interval": 300000,
+    "cache_duration": 600000,
+    "max_history_length": 100
+  }
+}
+

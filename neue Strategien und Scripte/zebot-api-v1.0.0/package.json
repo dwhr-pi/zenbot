@@ -1,0 +1,23 @@
+
+{
+  "name": "zebot-api",
+  "version": "1.0.0",
+  "description": "Zebot API with CCXT compatibility",
+  "main": "zebot_api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "zebot",
+    "ccxt",
+    "crypto",
+    "trading",
+    "api"
+  ],
+  "author": "Manus",
+  "license": "MIT",
+  "dependencies": {
+    "ccxt": "^4.0.0"
+  }
+}
+

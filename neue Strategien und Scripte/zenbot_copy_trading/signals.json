@@ -1,0 +1,20 @@
+[
+  {
+    "action": "buy",
+    "symbol": "BTC-USD",
+    "price": 50000,
+    "timestamp": 1621234567,
+    "source": "example",
+    "id": "signal_1",
+    "quality": 85
+  },
+  {
+    "action": "sell",
+    "symbol": "ETH-USD",
+    "price": 3000,
+    "timestamp": 1621234568,
+    "source": "example",
+    "id": "signal_2",
+    "quality": 75
+  }
+]

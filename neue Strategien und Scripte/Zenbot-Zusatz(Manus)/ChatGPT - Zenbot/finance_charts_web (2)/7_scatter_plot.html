@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Scatter Plot</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body><canvas id="chart"></canvas>
+<script>
+const ctx = document.getElementById('chart').getContext('2d');
+new Chart(ctx, {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'Rendite vs. Risiko',
+            data: [{x: 5, y: 10}, {x: 10, y: 15}, {x: 15, y: 20}],
+            backgroundColor: 'purple'
+        }]
+    },
+    options: {
+        scales: {
+            x: { title: { display: true, text: 'Risiko (%)' } },
+            y: { title: { display: true, text: 'Rendite (%)' } }
+        }
+    }
+});
+</script></body></html>

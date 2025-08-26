@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Flächendiagramm</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body><canvas id="chart"></canvas>
+<script>
+const ctx = document.getElementById('chart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [{
+            label: 'Umsatz (€)',
+            data: [3000, 3500, 4000, 4200],
+            backgroundColor: 'rgba(0, 123, 255, 0.4)',
+            fill: true,
+            borderColor: 'blue'
+        }]
+    }
+});
+</script></body></html>

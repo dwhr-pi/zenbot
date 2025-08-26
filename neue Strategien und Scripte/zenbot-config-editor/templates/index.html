@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenbot Konfigurations-Editor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-robot me-2"></i>
+                Zenbot Config Editor
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="{{ url_for('backup_config') }}" title="Backup erstellen">
+                    <i class="fas fa-download"></i> Backup
+                </a>
+                <a class="nav-link" href="{{ url_for('reset_config') }}" title="Auf Standard zurücksetzen" 
+                   onclick="return confirm('Sind Sie sicher, dass Sie die Konfiguration zurücksetzen möchten?')">
+                    <i class="fas fa-undo"></i> Reset
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Header -->
+            <div class="col-12 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <h1 class="display-6 mb-3">
+                            <i class="fas fa-cogs text-primary me-3"></i>
+                            Zenbot Konfigurations-Editor
+                        </h1>
+                        <p class="lead text-muted">
+                            Bearbeiten Sie hier die wichtigsten Einstellungen Ihrer <code>conf.js</code> Datei über eine benutzerfreundliche Weboberfläche.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="col-12 mb-4">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ 'danger' if category == 'danger' else 'warning' if category == 'warning' else 'info' if category == 'info' else 'success' }} alert-dismissible fade show" role="alert">
+                                <i class="fas fa-{{ 'exclamation-triangle' if category == 'danger' else 'exclamation-circle' if category == 'warning' else 'info-circle' if category == 'info' else 'check-circle' }} me-2"></i>
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <!-- Formular-Spalte -->
+            <div class="col-lg-8 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-light">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-edit text-primary me-2"></i>
+                            Konfiguration bearbeiten
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" id="configForm">
+                            <div class="row">
+                                {% for field_name, field_config in fields.items() %}
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-group">
+                                            <label for="{{ field_name }}" class="form-label fw-bold">
+                                                <i class="fas fa-{{ 'chart-line' if 'strategy' in field_name else 'exchange-alt' if 'selector' in field_name else 'play-circle' if 'paper' in field_name else 'dollar-sign' if 'capital' in field_name or 'pct' in field_name or 'amt' in field_name else 'clock' if 'time' in field_name or 'days' in field_name else 'cog' }} text-muted me-2"></i>
+                                                {{ field_config.label }}
+                                            </label>
+                                            
+                                            {% if field_config.type == 'select' %}
+                                                <select class="form-select" id="{{ field_name }}" name="{{ field_name }}" onchange="showHelp('{{ field_name }}')">
+                                                    <option value="">-- Bitte wählen --</option>
+                                                    {% for option in field_config.options %}
+                                                        <option value="{{ option }}" {% if option == config[field_name] %}selected{% endif %}>
+                                                            {{ option }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            {% elif field_config.type == 'number' %}
+                                                <input type="number" 
+                                                       class="form-control" 
+                                                       id="{{ field_name }}" 
+                                                       name="{{ field_name }}" 
+                                                       value="{{ config[field_name] }}"
+                                                       step="0.01"
+                                                       onfocus="showHelp('{{ field_name }}')"
+                                                       placeholder="Wert eingeben...">
+                                            {% else %}
+                                                <input type="text" 
+                                                       class="form-control" 
+                                                       id="{{ field_name }}" 
+                                                       name="{{ field_name }}" 
+                                                       value="{{ config[field_name] }}"
+                                                       onfocus="showHelp('{{ field_name }}')"
+                                                       placeholder="Wert eingeben...">
+                                            {% endif %}
+                                            
+                                            <div class="form-text text-muted">
+                                                <small>{{ field_config.help[:100] }}{% if field_config.help|length > 100 %}...{% endif %}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <button type="button" class="btn btn-outline-secondary me-md-2" onclick="resetForm()">
+                                    <i class="fas fa-undo me-2"></i>Zurücksetzen
+                                </button>
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-save me-2"></i>Konfiguration Speichern
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hilfe-Spalte -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm sticky-top" style="top: 20px;">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-question-circle me-2"></i>
+                            Hilfe & Anleitung
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="help-content">
+                            <div class="text-center text-muted py-4">
+                                <i class="fas fa-hand-pointer fa-2x mb-3"></i>
+                                <p>Klicken Sie auf ein Eingabefeld, um detaillierte Hilfe zu diesem Parameter zu erhalten.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Allgemeine Hilfe -->
+                        <div class="mt-4">
+                            <h5 class="text-primary">
+                                <i class="fas fa-lightbulb me-2"></i>Schnellstart
+                            </h5>
+                            <div class="accordion accordion-flush" id="quickStartAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
+                                            1. Erste Schritte
+                                        </button>
+                                    </h2>
+                                    <div id="step1" class="accordion-collapse collapse" data-bs-parent="#quickStartAccordion">
+                                        <div class="accordion-body">
+                                            <small>Beginnen Sie mit Paper-Trading (Simulation) aktiviert, um den Bot ohne echtes Geld zu testen.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
+                                            2. Börse wählen
+                                        </button>
+                                    </h2>
+                                    <div id="step2" class="accordion-collapse collapse" data-bs-parent="#quickStartAccordion">
+                                        <div class="accordion-body">
+                                            <small>Wählen Sie eine Börse und ein Währungspaar, mit dem Sie vertraut sind (z.B. gdax.BTC-USD).</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
+                                            3. Strategie testen
+                                        </button>
+                                    </h2>
+                                    <div id="step3" class="accordion-collapse collapse" data-bs-parent="#quickStartAccordion">
+                                        <div class="accordion-body">
+                                            <small>Beginnen Sie mit der 'trend_ema' Strategie und testen Sie diese ausgiebig, bevor Sie zu komplexeren Strategien wechseln.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light mt-5 py-4">
+        <div class="container text-center">
+            <p class="text-muted mb-0">
+                <i class="fas fa-robot me-2"></i>
+                Zenbot Konfigurations-Editor | 
+                <i class="fas fa-code me-1"></i> Erstellt mit Flask & Bootstrap
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Hilfe-Daten für jedes Feld
+        const helpData = {
+            {% for field_name, field_config in fields.items() %}
+            '{{ field_name }}': {
+                title: '{{ field_config.label }}',
+                content: '{{ field_config.help|safe }}'
+            },
+            {% endfor %}
+        };
+
+        function showHelp(fieldName) {
+            const helpContent = document.getElementById('help-content');
+            const data = helpData[fieldName];
+            
+            if (data) {
+                helpContent.innerHTML = `
+                    <div class="help-detail">
+                        <h5 class="text-primary mb-3">
+                            <i class="fas fa-info-circle me-2"></i>${data.title}
+                        </h5>
+                        <p class="text-muted">${data.content}</p>
+                        <div class="mt-3 p-3 bg-light rounded">
+                            <small class="text-muted">
+                                <i class="fas fa-lightbulb me-1"></i>
+                                <strong>Tipp:</strong> Änderungen werden erst nach dem Klick auf "Speichern" übernommen.
+                            </small>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function resetForm() {
+            if (confirm('Möchten Sie wirklich alle Änderungen verwerfen?')) {
+                document.getElementById('configForm').reset();
+            }
+        }
+
+        // Form-Validierung
+        document.getElementById('configForm').addEventListener('submit', function(e) {
+            const requiredFields = ['selector', 'strategy', 'paper'];
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field);
+                if (!element.value) {
+                    element.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    element.classList.remove('is-invalid');
+                }
+            });
+            
+            if (!isValid) {
+                e.preventDefault();
+                alert('Bitte füllen Sie alle Pflichtfelder aus (Selector, Strategy, Paper-Trading).');
+            }
+        });
+
+        // Auto-save Warnung
+        let formChanged = false;
+        document.getElementById('configForm').addEventListener('change', function() {
+            formChanged = true;
+        });
+
+        window.addEventListener('beforeunload', function(e) {
+            if (formChanged) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>OHLC Chart</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script></head>
+<body><canvas id="chart"></canvas>
+<script>
+const ctx = document.getElementById('chart').getContext('2d');
+new Chart(ctx, {
+    type: 'ohlc',
+    data: {
+        datasets: [{
+            label: 'MSFT',
+            data: [
+                {x: '2023-01-01', o: 220, h: 230, l: 210, c: 225},
+                {x: '2023-01-02', o: 225, h: 235, l: 215, c: 220}
+            ]
+        }]
+    }
+});
+</script></body></html>

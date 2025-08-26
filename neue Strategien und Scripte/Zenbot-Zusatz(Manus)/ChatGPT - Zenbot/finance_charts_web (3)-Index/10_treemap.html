@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Treemap</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap"></script></head>
+<body><canvas id="chart"></canvas>
+<script>
+const ctx = document.getElementById('chart').getContext('2d');
+new Chart(ctx, {
+    type: 'treemap',
+    data: {
+        datasets: [{
+            label: 'Portfolio',
+            tree: [
+                {x: 'Tech', v: 40},
+                {x: 'Finance', v: 30},
+                {x: 'Real Estate', v: 20},
+                {x: 'Cash', v: 10}
+            ],
+            key: 'v',
+            backgroundColor(ctx) {
+                const value = ctx.raw.v;
+                return `rgba(0, 0, 255, ${value / 50})`;
+            }
+        }]
+    }
+});
+</script></body></html>

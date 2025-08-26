@@ -1,0 +1,25 @@
+{
+  "name": "neural-blockchain-trading",
+  "version": "1.0.0",
+  "description": "Trading-Algorithmus mit neuronalen Netzwerken und Blockchain-Aktivitätsanalyse für Zenbot",
+  "main": "src/trading_algorithm.js",
+  "scripts": {
+    "backtest": "node src/backtest.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "trading",
+    "cryptocurrency",
+    "neural-networks",
+    "blockchain",
+    "zenbot",
+    "binance"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.2.0",
+    "@tensorflow/tfjs-node": "^4.2.0",
+    "node-binance-api": "^0.13.1"
+  }
+}

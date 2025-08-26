@@ -1,0 +1,27 @@
+{
+  "name": "zenbot-ai-risk-strategy",
+  "version": "1.0.0",
+  "description": "AI-powered risk analysis strategy for Zenbot using ChatGPT or Ollama",
+  "main": "ai_risk_strategy.js",
+  "scripts": {
+    "test": "node test_strategy.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "keywords": [
+    "zenbot",
+    "trading",
+    "ai",
+    "risk-analysis",
+    "chatgpt",
+    "ollama",
+    "cryptocurrency"
+  ],
+  "author": "Manus AI",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
+

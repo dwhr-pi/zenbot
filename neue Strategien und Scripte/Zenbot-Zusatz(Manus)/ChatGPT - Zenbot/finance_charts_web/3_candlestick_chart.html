@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Candlestick Chart</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script></head>
+<body><canvas id="chart"></canvas>
+<script>
+const ctx = document.getElementById('chart').getContext('2d');
+new Chart(ctx, {
+    type: 'candlestick',
+    data: {
+        datasets: [{
+            label: 'AAPL',
+            data: [
+                {x: '2023-01-01', o: 100, h: 110, l: 90, c: 105},
+                {x: '2023-01-02', o: 105, h: 115, l: 95, c: 100}
+            ]
+        }]
+    }
+});
+</script></body></html>

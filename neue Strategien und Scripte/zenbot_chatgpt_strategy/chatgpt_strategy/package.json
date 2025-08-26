@@ -1,0 +1,10 @@
+{
+  "name": "chatgpt_strategy",
+  "version": "1.0.0",
+  "description": "Zenbot strategy integrating with OpenAI API",
+  "main": "strategy.js",
+  "dependencies": {
+    "openai": "^4.0.0"
+  }
+}
+

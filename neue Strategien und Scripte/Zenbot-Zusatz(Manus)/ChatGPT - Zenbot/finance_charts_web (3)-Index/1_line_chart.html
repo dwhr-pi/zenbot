@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Liniendiagramm</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body><canvas id="chart"></canvas>
+<script>
+const ctx = document.getElementById('chart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai'],
+        datasets: [{
+            label: 'Aktienkurs',
+            data: [100, 105, 102, 110, 115],
+            borderColor: 'blue',
+            fill: false
+        }]
+    }
+});
+</script></body></html>

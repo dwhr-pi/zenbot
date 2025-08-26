@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heatmap - Finanzanalyse</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1.1.1"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .chart-container {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .description {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Heatmap - Finanzanalyse</h1>
+    <div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+    <div class="description">
+        <h3>Beschreibung</h3>
+        <p>
+            Eine Heatmap ist eine grafische Darstellung von Daten, bei der Werte durch Farben dargestellt werden. 
+            Sie werden häufig verwendet, um Veränderungen der Aktienkurse über Zeiträume oder Marktsektoren hinweg darzustellen.
+            Dieses Beispiel zeigt die Korrelation zwischen verschiedenen Anlageklassen als Heatmap.
+        </p>
+        
+        <h3>Verwendete Variablen</h3>
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Beschreibung</th>
+                <th>Datentyp</th>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td>Array von Objekten mit x, y und v (Wert) Eigenschaften</td>
+                <td>Array von Objekten {x, y, v}</td>
+            </tr>
+            <tr>
+                <td>backgroundColor</td>
+                <td>Funktion zur Bestimmung der Farbe basierend auf dem Wert</td>
+                <td>Funktion</td>
+            </tr>
+            <tr>
+                <td>borderColor</td>
+                <td>Funktion zur Bestimmung der Randfarbe basierend auf dem Wert</td>
+                <td>Funktion</td>
+            </tr>
+            <tr>
+                <td>width</td>
+                <td>Breite jeder Zelle in der Matrix</td>
+                <td>Zahl</td>
+            </tr>
+            <tr>
+                <td>height</td>
+                <td>Höhe jeder Zelle in der Matrix</td>
+                <td>Zahl</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        // Registriere das Matrix-Plugin für Heatmaps
+        Chart.register(window.chartjs_matrix);
+        
+        const ctx = document.getElementById('chart').getContext('2d');
+        
+        // Anlageklassen für die Korrelationsmatrix
+        const assetClasses = [
+            'US-Aktien', 
+            'EU-Aktien', 
+            'EM-Aktien', 
+            'Staatsanleihen', 
+            'Unternehmensanleihen', 
+            'Immobilien', 
+            'Gold', 
+            'Rohstoffe'
+        ];
+        
+        // Korrelationsmatrix (Beispieldaten)
+        // Werte zwischen -1 (negative Korrelation) und 1 (positive Korrelation)
+        const correlationMatrix = [
+            [1.00, 0.85, 0.70, -0.20, 0.10, 0.40, -0.15, 0.30],  // US-Aktien
+            [0.85, 1.00, 0.75, -0.15, 0.15, 0.45, -0.10, 0.35],  // EU-Aktien
+            [0.70, 0.75, 1.00, -0.25, 0.05, 0.50, 0.00, 0.60],   // EM-Aktien
+            [-0.20, -0.15, -0.25, 1.00, 0.65, 0.10, 0.25, -0.30], // Staatsanleihen
+            [0.10, 0.15, 0.05, 0.65, 1.00, 0.20, 0.15, -0.10],   // Unternehmensanleihen
+            [0.40, 0.45, 0.50, 0.10, 0.20, 1.00, 0.05, 0.25],    // Immobilien
+            [-0.15, -0.10, 0.00, 0.25, 0.15, 0.05, 1.00, 0.40],  // Gold
+            [0.30, 0.35, 0.60, -0.30, -0.10, 0.25, 0.40, 1.00]   // Rohstoffe
+        ];
+        
+        // Konvertiere die Matrix in das Format für das Chart.js Matrix-Plugin
+        const data = [];
+        for (let i = 0; i < assetClasses.length; i++) {
+            for (let j = 0; j < assetClasses.length; j++) {
+                data.push({
+                    x: j,
+                    y: i,
+                    v: correlationMatrix[i][j]
+                });
+            }
+        }
+        
+        // Funktion zur Bestimmung der Farbe basierend auf dem Korrelationswert
+        function getColor(value) {
+            // Negative Korrelation: Rot, Keine Korrelation: Weiß, Positive Korrelation: Grün
+            if (value < 0) {
+                // Rot für negative Korrelation
+                const intensity = Math.min(Math.abs(value) * 255, 255);
+                return `rgba(${intensity}, 0, 0, 0.8)`;
+            } else if (value > 0) {
+                // Grün für positive Korrelation
+                const intensity = Math.min(value * 255, 255);
+                return `rgba(0, ${intensity}, 0, 0.8)`;
+            } else {
+                // Weiß für keine Korrelation
+                return 'rgba(255, 255, 255, 0.8)';
+            }
+        }
+        
+        new Chart(ctx, {
+            type: 'matrix',
+            data: {
+                datasets: [{
+                    label: 'Korrelationsmatrix',
+                    data: data,
+                    backgroundColor: function(context) {
+                        const value = context.dataset.data[context.dataIndex].v;
+                        return getColor(value);
+                    },
+                    borderColor: function(context) {
+                        const value = context.dataset.data[context.dataIndex].v;
+                        return getColor(value);
+                    },
+                    borderWidth: 1,
+                    width: 50,
+                    height: 50
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Korrelationsmatrix verschiedener Anlageklassen',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function() {
+                                return '';
+                            },
+                            label: function(context) {
+                                const v = context.dataset.data[context.dataIndex];
+                                const x = assetClasses[v.x];
+                                const y = assetClasses[v.y];
+                                const value = v.v.toFixed(2);
+                                return `${y} zu ${x}: ${value}`;
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'category',
+                        labels: assetClasses,
+                        offset: true,
+                        ticks: {
+                            display: true
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        type: 'category',
+                        labels: assetClasses,
+                        offset: true,
+                        ticks: {
+                            display: true
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

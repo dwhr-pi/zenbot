@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Finanz-Charts für Zenbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .chart-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .chart-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .chart-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .chart-item h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .chart-item p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .chart-item a {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .chart-item a:hover {
+            background-color: #2980b9;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Finanz-Charts für Zenbot</h1>
+        
+        <div class="chart-list">
+            <div class="chart-item">
+                <h3>Liniendiagramm</h3>
+                <p>Visualisiert Trends und Veränderungen im Zeitverlauf, ideal für Aktienkurse und andere zeitbasierte Finanzdaten.</p>
+                <a href="1_line_chart.html" target="_blank">Ansehen</a>
+            </div>
+            
+            <div class="chart-item">
+                <h3>Balkendiagramm</h3>
+                <p>Vergleicht Kennzahlen über verschiedene Kategorien hinweg, wie Einnahmen nach Produktlinien oder Ausgaben nach Abteilungen.</p>
+                <a href="2_bar_chart.html" target="_blank">Ansehen</a>
+            </div>
+            
+            <div class="chart-item">
+                <h3>Kerzendiagramm</h3>
+                <p>Zeigt Eröffnungs-, Schluss-, Höchst- und Tiefstpreise von Finanzinstrumenten, beliebt für technische Analyse.</p>
+                <a href="3_candlestick_chart.html" target="_blank">Ansehen</a>
+            </div>
+            
+            <div class="chart-item">
+                <h3>Wasserfalldiagramm</h3>
+                <p>Zeigt, wie ein Anfangswert durch verschiedene positive und negative Faktoren beeinflusst wird, nützlich für Performanceanalysen.</p>
+                <a href="4_waterfall_chart.html" target="_blank">Ansehen</a>
+            </div>
+            
+            <div class="chart-item">
+                <h3>Streudiagramm</h3>
+                <p>Trägt zwei Variablen gegeneinander auf, um Muster oder Korrelationen in Finanzdaten zu erkennen, z.B. Risiko vs. Rendite.</p>
+                <a href="5_scatter_plot.html" target="_blank">Ansehen</a>
+            </div>
+            
+            <div class="chart-item">
+                <h3>Heatmap</h3>
+                <p>Stellt Daten durch Farben dar, häufig verwendet für Korrelationsmatrizen oder Veränderungen über Zeiträume/Sektoren.</p>
+                <a href="6_heatmap.html" target="_blank">Ansehen</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Diese Charts wurden mit Chart.js erstellt und können in das Zenbot Webinterface integriert werden.</p>
+        </div>
+    </div>
+</body>
+</html>
+

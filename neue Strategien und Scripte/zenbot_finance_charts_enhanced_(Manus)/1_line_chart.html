@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liniendiagramm - Aktienkursverlauf</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .chart-container {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .description {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liniendiagramm - Aktienkursverlauf</h1>
+    <div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+    <div class="description">
+        <h3>Beschreibung</h3>
+        <p>
+            Liniendiagramme sind ideal, um Trends und Veränderungen im Zeitverlauf darzustellen. 
+            Sie werden häufig verwendet, um die Entwicklung von Aktienkursen, Einnahmen, Gewinnen oder Cashflows zu visualisieren.
+            Dieses Beispiel zeigt den Kursverlauf mehrerer Aktien über einen Zeitraum von 12 Monaten.
+        </p>
+        
+        <h3>Verwendete Variablen</h3>
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Beschreibung</th>
+                <th>Datentyp</th>
+            </tr>
+            <tr>
+                <td>labels</td>
+                <td>Zeitpunkte (Monate) auf der X-Achse</td>
+                <td>Array von Strings</td>
+            </tr>
+            <tr>
+                <td>datasets[].label</td>
+                <td>Name der Aktie/des Datensatzes</td>
+                <td>String</td>
+            </tr>
+            <tr>
+                <td>datasets[].data</td>
+                <td>Aktienkurswerte zu den jeweiligen Zeitpunkten</td>
+                <td>Array von Zahlen</td>
+            </tr>
+            <tr>
+                <td>datasets[].borderColor</td>
+                <td>Farbe der Linie</td>
+                <td>String (CSS-Farbwert)</td>
+            </tr>
+            <tr>
+                <td>datasets[].tension</td>
+                <td>Glättungsfaktor der Linie (0 = keine Glättung)</td>
+                <td>Zahl (0-1)</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                datasets: [
+                    {
+                        label: 'Tech AG',
+                        data: [100, 105, 102, 110, 115, 112, 120, 125, 130, 128, 135, 140],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        tension: 0.2,
+                        fill: false
+                    },
+                    {
+                        label: 'Finanz GmbH',
+                        data: [80, 82, 85, 83, 87, 90, 92, 95, 93, 97, 100, 102],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        tension: 0.2,
+                        fill: false
+                    },
+                    {
+                        label: 'Industrie SE',
+                        data: [120, 118, 115, 117, 122, 125, 128, 130, 135, 138, 142, 145],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        tension: 0.2,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Kurs in €'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Monat'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Aktienkursverlauf 2024',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

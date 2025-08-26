@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  zenbot_user_a:
+    build: .
+    container_name: zenbot_user_a
+    volumes:
+      - ./configs/conf_user_a.js:/app/conf.js:ro
+      - ./database/user_a:/app/database
+      - ./logs/user_a:/app/logs
+    ports:
+      - "8081:8080"  # Web UI für Benutzer A
+    environment:
+      - NODE_ENV=production
+      - ZENBOT_USER=user_a
+    command: ["node", "zenbot.js", "trade", "--paper", "--conf=/app/conf.js"]
+    restart: unless-stopped
+    networks:
+      - zenbot_network
+
+  zenbot_user_b:
+    build: .
+    container_name: zenbot_user_b
+    volumes:
+      - ./configs/conf_user_b.js:/app/conf.js:ro
+      - ./database/user_b:/app/database
+      - ./logs/user_b:/app/logs
+    ports:
+      - "8082:8080"  # Web UI für Benutzer B
+    environment:
+      - NODE_ENV=production
+      - ZENBOT_USER=user_b
+    command: ["node", "zenbot.js", "trade", "--paper", "--conf=/app/conf.js"]
+    restart: unless-stopped
+    networks:
+      - zenbot_network
+
+  # Optional: MongoDB für erweiterte Datenspeicherung
+  mongodb:
+    image: mongo:5.0
+    container_name: zenbot_mongodb
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=zenbot
+      - MONGO_INITDB_ROOT_PASSWORD=zenbot_password
+    restart: unless-stopped
+    networks:
+      - zenbot_network
+
+  # Optional: Redis für Caching und Session-Management
+  redis:
+    image: redis:7-alpine
+    container_name: zenbot_redis
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - zenbot_network
+
+networks:
+  zenbot_network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data:
+

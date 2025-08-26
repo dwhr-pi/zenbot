@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Streudiagramm - Finanzanalyse</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .chart-container {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .description {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Streudiagramm - Finanzanalyse</h1>
+    <div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+    <div class="description">
+        <h3>Beschreibung</h3>
+        <p>
+            Ein Streudiagramm (Scatter Plot) trägt zwei Variablen gegeneinander auf und wird häufig verwendet, 
+            um Muster oder Korrelationen in Finanzdaten zu erkennen. Dieses Beispiel zeigt die Beziehung zwischen 
+            Risiko (Volatilität) und Rendite für verschiedene Anlageklassen und Einzelwerte.
+        </p>
+        
+        <h3>Verwendete Variablen</h3>
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Beschreibung</th>
+                <th>Datentyp</th>
+            </tr>
+            <tr>
+                <td>datasets[].label</td>
+                <td>Bezeichnung der Datenreihe/Kategorie</td>
+                <td>String</td>
+            </tr>
+            <tr>
+                <td>datasets[].data</td>
+                <td>Array von Punkten mit x- und y-Koordinaten</td>
+                <td>Array von Objekten {x, y}</td>
+            </tr>
+            <tr>
+                <td>datasets[].backgroundColor</td>
+                <td>Farbe der Datenpunkte</td>
+                <td>String oder Array von Strings</td>
+            </tr>
+            <tr>
+                <td>datasets[].borderColor</td>
+                <td>Randfarbe der Datenpunkte</td>
+                <td>String oder Array von Strings</td>
+            </tr>
+            <tr>
+                <td>datasets[].pointRadius</td>
+                <td>Größe der Datenpunkte</td>
+                <td>Zahl oder Array von Zahlen</td>
+            </tr>
+            <tr>
+                <td>datasets[].pointHoverRadius</td>
+                <td>Größe der Datenpunkte bei Hover</td>
+                <td>Zahl oder Array von Zahlen</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('chart').getContext('2d');
+        
+        // Daten für das Streudiagramm
+        const stockData = [
+            { x: 18, y: 12, label: 'Tech AG' },
+            { x: 15, y: 10, label: 'Finanz GmbH' },
+            { x: 12, y: 8, label: 'Industrie SE' },
+            { x: 22, y: 15, label: 'Biotech Inc.' },
+            { x: 8, y: 5, label: 'Versorger AG' },
+            { x: 25, y: 18, label: 'Startup XYZ' }
+        ];
+        
+        const etfData = [
+            { x: 14, y: 9, label: 'World ETF' },
+            { x: 10, y: 7, label: 'Bond ETF' },
+            { x: 16, y: 11, label: 'Tech ETF' },
+            { x: 7, y: 4, label: 'Gov Bonds ETF' }
+        ];
+        
+        const assetClassData = [
+            { x: 5, y: 3, label: 'Staatsanleihen' },
+            { x: 10, y: 6, label: 'Unternehmensanleihen' },
+            { x: 15, y: 10, label: 'Aktien' },
+            { x: 20, y: 13, label: 'Immobilien' },
+            { x: 25, y: 16, label: 'Private Equity' }
+        ];
+        
+        new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Einzelaktien',
+                        data: stockData,
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    },
+                    {
+                        label: 'ETFs',
+                        data: etfData,
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    },
+                    {
+                        label: 'Anlageklassen',
+                        data: assetClassData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Risiko (Volatilität in %)'
+                        },
+                        min: 0,
+                        max: 30
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Erwartete Rendite (%)'
+                        },
+                        min: 0,
+                        max: 20
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Risiko-Rendite-Verhältnis verschiedener Anlagen',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const point = context.raw;
+                                return point.label + ': Risiko ' + point.x + '%, Rendite ' + point.y + '%';
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kerzendiagramm (Candlestick) - Aktienanalyse</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@0.1.1"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .chart-container {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .description {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kerzendiagramm (Candlestick) - Aktienanalyse</h1>
+    <div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+    <div class="description">
+        <h3>Beschreibung</h3>
+        <p>
+            Kerzendiagramme (Candlestick-Charts) visualisieren Preisveränderungen über einen bestimmten Zeitraum für Finanzinstrumente wie Aktien.
+            Sie zeigen den Eröffnungs-, Schluss-, Höchst- und Tiefstpreis einer Vermögensanlage an und sind beliebt für die Darstellung der Marktpsychologie und zur technischen Analyse.
+            Dieses Beispiel zeigt den Kursverlauf einer Aktie über einen Monat mit täglichen Kerzen.
+        </p>
+        
+        <h3>Verwendete Variablen</h3>
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Beschreibung</th>
+                <th>Datentyp</th>
+            </tr>
+            <tr>
+                <td>data[].x</td>
+                <td>Datum/Zeitpunkt der Kerze</td>
+                <td>Date oder String im ISO-Format</td>
+            </tr>
+            <tr>
+                <td>data[].o</td>
+                <td>Eröffnungskurs (Open)</td>
+                <td>Zahl</td>
+            </tr>
+            <tr>
+                <td>data[].h</td>
+                <td>Höchstkurs (High)</td>
+                <td>Zahl</td>
+            </tr>
+            <tr>
+                <td>data[].l</td>
+                <td>Tiefstkurs (Low)</td>
+                <td>Zahl</td>
+            </tr>
+            <tr>
+                <td>data[].c</td>
+                <td>Schlusskurs (Close)</td>
+                <td>Zahl</td>
+            </tr>
+            <tr>
+                <td>color.up</td>
+                <td>Farbe für steigende Kerzen (Schlusskurs > Eröffnungskurs)</td>
+                <td>String (CSS-Farbwert)</td>
+            </tr>
+            <tr>
+                <td>color.down</td>
+                <td>Farbe für fallende Kerzen (Schlusskurs < Eröffnungskurs)</td>
+                <td>String (CSS-Farbwert)</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        // Generiere Beispieldaten für einen Monat
+        function generateCandlestickData() {
+            const data = [];
+            let baseValue = 100;
+            const volatility = 2;
+            
+            const today = new Date();
+            const startDate = new Date(today);
+            startDate.setMonth(today.getMonth() - 1);
+            
+            for (let i = 0; i < 30; i++) {
+                const date = new Date(startDate);
+                date.setDate(startDate.getDate() + i);
+                
+                // Simuliere Preisbewegungen
+                const open = baseValue + (Math.random() - 0.5) * volatility;
+                const close = open + (Math.random() - 0.5) * volatility * 2;
+                const high = Math.max(open, close) + Math.random() * volatility;
+                const low = Math.min(open, close) - Math.random() * volatility;
+                
+                data.push({
+                    x: date.toISOString().split('T')[0],
+                    o: open,
+                    h: high,
+                    l: low,
+                    c: close
+                });
+                
+                // Aktualisiere den Basiswert für den nächsten Tag
+                baseValue = close;
+            }
+            
+            return data;
+        }
+
+        const ctx = document.getElementById('chart').getContext('2d');
+        
+        // Registriere das Financial Chart Plugin
+        Chart.register(window.ChartjsFinancial);
+        
+        new Chart(ctx, {
+            type: 'candlestick',
+            data: {
+                datasets: [{
+                    label: 'Tech AG Aktie',
+                    data: generateCandlestickData(),
+                    color: {
+                        up: 'rgba(75, 192, 192, 1)',
+                        down: 'rgba(255, 99, 132, 1)',
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                            displayFormats: {
+                                day: 'dd.MM'
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Datum'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Kurs in €'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Tech AG Aktienkurs (30 Tage)',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const point = context.raw;
+                                return [
+                                    'Open: ' + point.o.toFixed(2) + ' €',
+                                    'High: ' + point.h.toFixed(2) + ' €',
+                                    'Low: ' + point.l.toFixed(2) + ' €',
+                                    'Close: ' + point.c.toFixed(2) + ' €'
+                                ];
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

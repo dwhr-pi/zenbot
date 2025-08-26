@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wasserfalldiagramm - Finanzanalyse</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@0.1.1"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .chart-container {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .description {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wasserfalldiagramm - Finanzanalyse</h1>
+    <div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+    <div class="description">
+        <h3>Beschreibung</h3>
+        <p>
+            Wasserfalldiagramme zeigen, wie ein Anfangswert durch verschiedene positive und negative Faktoren über einen Zeitraum beeinflusst wird.
+            Sie sind nützlich für Performanceanalysen, Bestandsprüfungen oder um die Berechnung des Nettogewinns zu veranschaulichen.
+            Dieses Beispiel zeigt die Entwicklung des Betriebsergebnisses von einem Ausgangswert durch verschiedene Einflüsse bis zum Endergebnis.
+        </p>
+        
+        <h3>Verwendete Variablen</h3>
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Beschreibung</th>
+                <th>Datentyp</th>
+            </tr>
+            <tr>
+                <td>labels</td>
+                <td>Bezeichnungen der einzelnen Schritte im Wasserfall</td>
+                <td>Array von Strings</td>
+            </tr>
+            <tr>
+                <td>datasets[].data</td>
+                <td>Werte für jeden Schritt (positive oder negative Zahlen)</td>
+                <td>Array von Zahlen</td>
+            </tr>
+            <tr>
+                <td>datasets[].backgroundColor</td>
+                <td>Hintergrundfarben für die Balken (Start, Positiv, Negativ, Total)</td>
+                <td>Array von Strings oder Funktion</td>
+            </tr>
+            <tr>
+                <td>stack</td>
+                <td>Stapel-ID für die korrekte Darstellung des Wasserfalls</td>
+                <td>String</td>
+            </tr>
+            <tr>
+                <td>datalabels.formatter</td>
+                <td>Funktion zur Formatierung der Datenbeschriftungen</td>
+                <td>Funktion</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('chart').getContext('2d');
+        
+        // Daten für das Wasserfalldiagramm
+        const labels = ['Ausgangswert', 'Umsatzsteigerung', 'Materialkosten', 'Personalkosten', 'Marketingausgaben', 'Sonstige Kosten', 'Steuern', 'Endergebnis'];
+        const data = [500, 200, -80, -120, -50, -30, -100, 0]; // Der letzte Wert wird automatisch berechnet
+        
+        // Berechne den Endwert und aktualisiere die Daten
+        let sum = data[0];
+        for (let i = 1; i < data.length - 1; i++) {
+            sum += data[i];
+        }
+        data[data.length - 1] = sum;
+        
+        // Bestimme, welche Balken Summen sind (erster und letzter)
+        const isSummary = (i) => i === 0 || i === data.length - 1;
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: (context) => {
+                        const index = context.dataIndex;
+                        if (isSummary(index)) return 'rgba(75, 192, 192, 0.8)'; // Summen (Start und Ende)
+                        return data[index] >= 0 ? 'rgba(54, 162, 235, 0.8)' : 'rgba(255, 99, 132, 0.8)'; // Positiv oder negativ
+                    },
+                    borderColor: (context) => {
+                        const index = context.dataIndex;
+                        if (isSummary(index)) return 'rgba(75, 192, 192, 1)'; // Summen (Start und Ende)
+                        return data[index] >= 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(255, 99, 132, 1)'; // Positiv oder negativ
+                    },
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Betrag in Tsd. €'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Faktoren'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Entwicklung des Betriebsergebnisses',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let value = context.raw;
+                                return value >= 0 ? '+' + value + ' Tsd. €' : value + ' Tsd. €';
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            },
+            plugins: [{
+                id: 'waterfall',
+                beforeDraw: function(chart) {
+                    const ctx = chart.ctx;
+                    const xAxis = chart.scales.x;
+                    const yAxis = chart.scales.y;
+                    const dataset = chart.data.datasets[0];
+                    
+                    // Zeichne die Verbindungslinien zwischen den Balken
+                    ctx.save();
+                    ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
+                    ctx.lineWidth = 1;
+                    
+                    let runningTotal = dataset.data[0];
+                    let prevX, prevY;
+                    
+                    // Startpunkt (erster Balken)
+                    const meta = chart.getDatasetMeta(0);
+                    const firstBar = meta.data[0];
+                    prevX = firstBar.x + firstBar.width;
+                    prevY = yAxis.getPixelForValue(runningTotal);
+                    
+                    // Zeichne Linien für jeden Balken außer dem ersten
+                    for (let i = 1; i < dataset.data.length; i++) {
+                        const bar = meta.data[i];
+                        const value = dataset.data[i];
+                        
+                        if (!isSummary(i)) {
+                            // Aktualisiere den laufenden Gesamtwert
+                            runningTotal += value;
+                            
+                            // Zeichne horizontale Linie vom vorherigen Punkt zum aktuellen Balken
+                            ctx.beginPath();
+                            ctx.moveTo(prevX, prevY);
+                            ctx.lineTo(bar.x, prevY);
+                            ctx.stroke();
+                            
+                            // Aktualisiere den vorherigen Punkt für die nächste Linie
+                            prevX = bar.x + bar.width;
+                            prevY = yAxis.getPixelForValue(runningTotal);
+                        }
+                    }
+                    
+                    ctx.restore();
+                }
+            }]
+        });
+    </script>
+</body>
+</html>
+

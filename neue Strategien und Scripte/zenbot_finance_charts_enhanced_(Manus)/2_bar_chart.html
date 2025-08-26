@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Balkendiagramm - Finanzanalyse</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .chart-container {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .description {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Balkendiagramm - Finanzanalyse</h1>
+    <div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+    <div class="description">
+        <h3>Beschreibung</h3>
+        <p>
+            Balkendiagramme stellen Datenpunkte als horizontal oder vertikal positionierte Balken dar. 
+            Sie werden häufig verwendet, um Kennzahlen über verschiedene Kategorien hinweg zu vergleichen, 
+            wie z.B. Einnahmen nach Produktlinien oder Ausgaben nach Abteilungen.
+            Dieses Beispiel zeigt einen Vergleich der Quartalsumsätze verschiedener Geschäftsbereiche.
+        </p>
+        
+        <h3>Verwendete Variablen</h3>
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Beschreibung</th>
+                <th>Datentyp</th>
+            </tr>
+            <tr>
+                <td>labels</td>
+                <td>Kategorien auf der X-Achse (Geschäftsbereiche)</td>
+                <td>Array von Strings</td>
+            </tr>
+            <tr>
+                <td>datasets[].label</td>
+                <td>Bezeichnung des Datensatzes (Quartal)</td>
+                <td>String</td>
+            </tr>
+            <tr>
+                <td>datasets[].data</td>
+                <td>Umsatzwerte für jede Kategorie</td>
+                <td>Array von Zahlen</td>
+            </tr>
+            <tr>
+                <td>datasets[].backgroundColor</td>
+                <td>Hintergrundfarbe der Balken</td>
+                <td>String oder Array von Strings (CSS-Farbwerte)</td>
+            </tr>
+            <tr>
+                <td>datasets[].borderColor</td>
+                <td>Randfarbe der Balken</td>
+                <td>String oder Array von Strings (CSS-Farbwerte)</td>
+            </tr>
+            <tr>
+                <td>datasets[].borderWidth</td>
+                <td>Breite des Balkenrands in Pixeln</td>
+                <td>Zahl</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Retail', 'Online', 'B2B', 'International'],
+                datasets: [
+                    {
+                        label: 'Q1 2024',
+                        data: [1200, 1800, 900, 1500],
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Q2 2024',
+                        data: [1300, 2100, 950, 1650],
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Q3 2024',
+                        data: [1250, 2300, 1100, 1800],
+                        backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Umsatz in Tsd. €'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Geschäftsbereich'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Quartalsumsätze nach Geschäftsbereich',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

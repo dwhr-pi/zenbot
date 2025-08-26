@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Finanz Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📊 Finanz Dashboard mit Flask</h1>
+    <ul>
+        {% for chart in charts %}
+        <li><a href="{{ url_for('chart', name=chart) }}" target="_blank">{{ loop.index }}. {{ chart.replace('_', ' ').title().replace('.Html', '') }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

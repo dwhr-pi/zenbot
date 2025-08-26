@@ -1,0 +1,12 @@
+node_modules
+data
+database
+simulations/*
+docs
+docker-compose*
+Dockerfile
+conf.js
+*.md
+.gitignore
+.dockerignore
+.github/

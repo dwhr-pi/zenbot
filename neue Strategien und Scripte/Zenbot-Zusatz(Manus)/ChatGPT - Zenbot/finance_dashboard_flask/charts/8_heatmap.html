@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Heatmap</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1.2.0"></script></head>
+<body><canvas id="chart"></canvas>
+<script>
+const ctx = document.getElementById('chart').getContext('2d');
+new Chart(ctx, {
+    type: 'matrix',
+    data: {
+        datasets: [{
+            label: 'Performance',
+            data: [
+                {x: 'Tech', y: 'AAPL', v: 20},
+                {x: 'Tech', y: 'MSFT', v: -10},
+                {x: 'Fin', y: 'JPM', v: 5},
+                {x: 'Health', y: 'PFE', v: 0}
+            ],
+            backgroundColor(ctx) {
+                const value = ctx.raw.v;
+                const alpha = (value + 20) / 40;
+                return `rgba(0, 128, 0, ${alpha})`;
+            },
+            width: 50,
+            height: 30
+        }]
+    },
+    options: {
+        scales: {
+            x: { type: 'category', offset: true },
+            y: { type: 'category', offset: true }
+        }
+    }
+});
+</script></body></html>
