@@ -1,4 +1,3 @@
-Hallo! Selbstverständlich kann ich die von Ihnen bereitgestellte Zenbot-Strategie überprüfen, dokumentieren und Empfehlungen für die Voreinstellungen geben.
 
 ### 1. Dokumentation der `retrend_price` Strategie
 
