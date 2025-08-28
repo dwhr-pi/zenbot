@@ -293,6 +293,10 @@ Diese Forks kann man sehr gut auch mit der [herokuapp](https://gitpop2.herokuapp
 - [4. Trying_to_understand_how_Zenbot_strategies_are_working](https://www.youtube.com/watch?v=zdxWANfCbU4)
 
 - [Zenbot Playlist at Youtube](https://www.youtube.com/playlist?list=PLSeF7wP23srtfvrjddCGUIdvfujWNf7tJ)
+- [Zenbot Review: Honest User Experience with the Best Trading Bot for Crypto & More ](https://youtu.be/AQUbIg_GsiU?si=Gj77kSiT_kjABY4d)
+- [Zenbot Trading Bot: une vidéo d'introduction](https://youtu.be/C5kdAqE6JpA?si=Nx3aHe9G31ACXbDh)
+- []()
+- []()
 - - -
 
 
