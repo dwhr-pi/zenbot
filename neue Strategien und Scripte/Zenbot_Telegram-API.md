@@ -1,0 +1,27 @@
+# Zenbot Telegram Anleitung zum Erhalt der API und des Sicherheitsschlüssels. 
+
+Basierend auf den Suchergebnissen scheint es eine gewisse Verwirrung zu geben. Zenbot ist eine Befehlszeilenanwendung für den Handel mit Kryptowährungen und nicht direkt ein Telegram-Bot, den man einfach so einrichtet. Die Anleitungen, die gefunden wurden, beziehen sich auf die generelle Erstellung eines Telegram-Bots und den Erhalt eines API-Schlüssels (Token) dafür.
+
+Es gibt keinen spezifischen "Sicherheitsschlüssel" für Zenbot in Verbindung mit Telegram. Der "API-Schlüssel" oder "Token" wird von Telegram selbst generiert, um einem Bot den Zugriff auf die Telegram-API zu ermöglichen.
+
+Hier ist die allgemeine Vorgehensweise, um einen Telegram-Bot zu erstellen und den API-Token zu erhalten, den Sie dann theoretisch in einer Anwendung wie Zenbot verwenden könnten, wenn diese eine Telegram-Integration unterstützt:
+
+### Anleitung zum Erhalt des Telegram-API-Tokens:
+
+1.  **BotFather in Telegram finden:** Öffnen Sie Ihre Telegram-App und suchen Sie nach dem offiziellen Bot-Verwaltungs-Bot von Telegram namens "BotFather". Er hat ein blaues Häkchen zur Verifizierung.
+
+2.  **Neuen Bot erstellen:** Starten Sie einen Chat mit dem BotFather und geben Sie den Befehl `/newbot` ein.
+
+3.  **Namen und Benutzernamen vergeben:**
+    *   Der BotFather wird Sie zunächst nach einem Anzeigenamen für Ihren Bot fragen. Diesen können Sie frei wählen.
+    *   Anschließend müssen Sie einen eindeutigen Benutzernamen für Ihren Bot festlegen, der auf "_bot" enden muss (z. B. `MeinTest_bot`).
+
+4.  **API-Token erhalten:** Nachdem Sie einen gültigen Benutzernamen gewählt haben, sendet Ihnen der BotFather eine Nachricht, die Ihren API-Token enthält. Dieser Token ist eine lange Zeichenfolge aus Zahlen und Buchstaben und dient zur Authentifizierung Ihres Bots. Behandeln Sie diesen Token wie ein Passwort und geben Sie ihn nicht an Unbefugte weiter.
+
+5.  **API-Token wiederfinden:** Sollten Sie den Token verlieren oder vergessen, können Sie den BotFather erneut kontaktieren, den Befehl `/mybots` eingeben, Ihren Bot aus der Liste auswählen und dann die Option "API Token" wählen, um ihn erneut anzuzeigen.
+
+Dieser API-Token wird dann in der Konfiguration der Software verwendet, die den Bot steuern soll (in Ihrem Fall potenziell Zenbot, falls es eine solche Funktion zur Benachrichtigung oder Steuerung via Telegram bietet). Die Dokumentation von Zenbot selbst wäre die primäre Quelle, um herauszufinden, wo und wie dieser Telegram-API-Token eingetragen werden muss.  
+
+
+
+
