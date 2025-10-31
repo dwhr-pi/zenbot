@@ -25,10 +25,12 @@ Dieser API-Token wird dann in der Konfiguration der Software verwendet, die den 
 
 # Zenbot verlangt noch einen Sicherheitsschlüssel als Gegenprobe.
 
-Diesen erhält man in dem man alles bisherige dazu (siehr oben) konfiguriert hat. 
+Diesen erhält man in dem man alles bisherige dazu (siehe oben) konfiguriert hat. 
 Nun man sich diesen erstellten Chatraum/Channel zum Bot näher ansieht. 
-Nun sollte unser Zenbot gestartet sein und das Terminal gut sichtbar. 
-Gib jetzt einfach irgendeinen Text in den Chatraum oder Channel ein und siehe was im Terminal passiert. 
-Im Terminal ist eine Nummer: Neben der Nachricht, die Du eingegeben hast. 
-Diese Nummer ist dann der gesuchte Schlüsse, der nur Dir gegenüber bzw. Zenbot bekannt gegeben wird. 
-Der Schlüssel bedeutet, das Zenbot nur auf den User hört und Befehle annimmt, die nur von diesem User stammen. 
+Nun sollte unser Zenbot gestartet sein und das Terminal gut sichtbar sein. 
+nur /zenbot.sh auszuführen sollte reichen.  
+Gib jetzt einfach mal irgendeinen Text in den Chatraum oder Channel ein und siehe was im Terminal geschrieben wird und passiert. 
+Im Terminal ist eine Nummer: Neben der von Dir in Telegramm eingegeben Nachricht, die Du eingegeben hast nunmehr im Terminal sichtbar. 
+Diese Nummer ist dann der gesuchte Schlüssel, der nur Dir gegenüber bzw. Zenbot bekannt gegeben wird. 
+Der Schlüssel bedeutet, das Zenbot nur auf den User hört und Befehle annimmt, die nur von diesem einem User stammen. 
+Vermeide, das zu diesem Zeitpunkt des Probelaufes andere Personen auf den Channel oder Chatraum zugriff haben. 
