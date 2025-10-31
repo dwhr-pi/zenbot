@@ -108,3 +108,11 @@ binance.ADA-USDT
 🛡 Sicherheitshinweis
 
 Das direkte Ausführen von Shell-Kommandos aus dem Webfrontend ist potenziell gefährlich. Nutze entsprechende Sicherheitsmechanismen (z. B. Authentifizierung, Parameter-Validierung oder direkte API-Zugriffe), bevor du das System öffentlich zugänglich machst.  
+
+
+xxxxxx
+
+
+
+# Für Zenbot möchte ich eine Erweiterung für das Webinterface. In dem die CPU Last pro Kern, bzw. der gesamt Last, sowie den freier Speicherplatz auf der ausführenden Festplatte, RAM Speicher Auslastung und LAN/WLAN Auslastung des ausführenden Systems grafisch alle 200 msek. ausgeben wird. 
+
