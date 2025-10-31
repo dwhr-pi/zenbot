@@ -34,3 +34,6 @@ Im Terminal ist eine Nummer: Neben der von Dir in Telegramm eingegeben Nachricht
 Diese Nummer ist dann der gesuchte Schlüssel, der nur Dir gegenüber bzw. Zenbot bekannt gegeben wird. 
 Der Schlüssel bedeutet, das Zenbot nur auf den User hört und Befehle annimmt, die nur von diesem einem User stammen. 
 Vermeide, das zu diesem Zeitpunkt des Probelaufes andere Personen auf den Channel oder Chatraum zugriff haben. 
+Später kannste mit einem Zweitaccount testen, ob Zenbot wirklich nur Dir gehorcht und keinem anderen. 
+Biste Dir sicher, dann postet Zrnbot künftig Deine Ankäufe oder Handelsdaten im Chatraum. 
+Mit een Befehlen die Zenbot akzeptiert, kannste im Chatraum/Channel ja etwas Herumexperimentieren und Dir sicher werden. 
