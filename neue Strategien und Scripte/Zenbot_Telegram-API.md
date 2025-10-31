@@ -23,5 +23,12 @@ Hier ist die allgemeine Vorgehensweise, um einen Telegram-Bot zu erstellen und d
 Dieser API-Token wird dann in der Konfiguration der Software verwendet, die den Bot steuern soll (in Ihrem Fall potenziell Zenbot, falls es eine solche Funktion zur Benachrichtigung oder Steuerung via Telegram bietet). Die Dokumentation von Zenbot selbst wäre die primäre Quelle, um herauszufinden, wo und wie dieser Telegram-API-Token eingetragen werden muss.  
 
 
+# Zenbot verlangt noch einen Sicherheitsschlüssel als Gegenprobe.
 
-
+Diesen erhält man in dem man alles bisherige dazu (siehr oben) konfiguriert hat. 
+Nun man sich diesen erstellten Chatraum/Channel zum Bot näher ansieht. 
+Nun sollte unser Zenbot gestartet sein und das Terminal gut sichtbar. 
+Gib jetzt einfach irgendeinen Text in den Chatraum oder Channel ein und siehe was im Terminal passiert. 
+Im Terminal ist eine Nummer: Neben der Nachricht, die Du eingegeben hast. 
+Diese Nummer ist dann der gesuchte Schlüsse, der nur Dir gegenüber bzw. Zenbot bekannt gegeben wird. 
+Der Schlüssel bedeutet, das Zenbot nur auf den User hört und Befehle annimmt, die nur von diesem User stammen. 
