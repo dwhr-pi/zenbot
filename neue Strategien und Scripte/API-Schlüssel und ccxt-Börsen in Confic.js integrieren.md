@@ -1,0 +1,2 @@
+# Im Zebot Webinterface gibt es eine Chart, die den aktuellen Preis dortig voreingestellter Währungen bekannt gibt. Ich würde gerne die API-Anbindung in der Confic.js schon implementiert sehen. Da bei verschiedenen Börsen nur eine begrenzte Anzahl an Abfragen für einen bestimmten Zeitraum zur Verfügung stehen, stellt sich die Frage, ob eine zusätzlicher API-Schlüssel hierzu nicht seperat mit einzubinden währe besser ist. Gleichfalls, ob nicht multiple ccxt Börsen hierzu jeweils mit zu verwenden sind und manuell in der confic.js konfiguriert werden können. 
+
