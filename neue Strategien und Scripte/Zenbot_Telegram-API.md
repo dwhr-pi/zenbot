@@ -32,7 +32,7 @@ nur /zenbot.sh auszuführen sollte reichen.
 Gib jetzt einfach mal irgendeinen Text in den Chatraum oder Channel ein und siehe was im Terminal geschrieben wird und passiert. 
 Im Terminal erscheint eine Nummer, neben der von Dir in Telegramm eingegeben Nachricht, die Du dort eingegeben hast nunmehr im Terminal sichtbar. 
 Diese Nummer ist dann der gesuchte Schlüssel, der nur Dir gegenüber bzw. Zenbot bekannt gegeben wird. 
-Kopiere diesen Sicherheitsschlüssel und füge den in die confic.js an entstprecher Stelle ein. 
+Kopiere diesen Sicherheitsschlüssel und füge den in die 'confic.js' an entstprechder Stelle 'Telegram_Secret_Key' ein. 
 
 Der Schlüssel bedeutet, das Zenbot nur auf den User hört und Befehle annimmt, die nur von diesem einem User stammen. 
 Vermeide, das zu diesem Zeitpunkt des Probelaufes andere Personen auf den Channel oder Chatraum zugriff haben. 
