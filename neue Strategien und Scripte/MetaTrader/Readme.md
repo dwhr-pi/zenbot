@@ -558,4 +558,217 @@ eine komplette Schritt-für-Schritt Anleitung
 Möchtest du ein Beispiel, wie so eine Zenbot-to-MT4 Bridge programmiert wird?
 
 
+## Orderbücher, was ist das und kann man das in Zenbot integrieren?
+
+Gerne! Ich erkläre dir zuerst klar und einfach, was ein Orderbuch ist, und danach, wie und ob man Orderbuch-Daten in Zenbot integrieren kann.
+
+
+---
+
+📘 1. Was ist ein Orderbuch? (Orderbook / Level 2 Market Data)
+
+Ein Orderbuch ist eine Echtzeit-Liste aller Kauf- und Verkaufsangebote an einer Börse.
+
+Es besteht aus zwei Seiten:
+
+📗 Bid-Seite (Kaufangebote)
+
+Trader möchten kaufen → bieten bestimmte Preise.
+Beispiel:
+
+BID Preis	Menge
+
+49.950	1.2 BTC
+49.900	3.4 BTC
+49.850	0.8 BTC
+
+
+📕 Ask-Seite (Verkaufsangebote)
+
+Trader möchten verkaufen → verlangen bestimmte Preise.
+
+ASK Preis	Menge
+
+50.050	1.8 BTC
+50.100	2.1 BTC
+50.150	0.7 BTC
+
+
+❗ Wichtig:
+
+Der engste Preis (höchster Bid und niedrigster Ask) ist der Spread.
+
+Orderbücher zeigen die Liquidität eines Marktes.
+
+Das ist Level 2 Marktdaten (mehrere Preisstufen).
+
+Deine Chart-Kerzen sind Level 1 Daten (nur letzter Preis).
+
+
+Mit Orderbüchern kannst du erkennen:
+
+wohin der Markt wahrscheinlich gehen wird
+
+wo große Orders liegen (Walls)
+
+wie stark Buy/Sell-Druck ist
+
+Liquidität, Slippage, Manipulationen
+
+
+
+---
+
+📘 2. Kann Zenbot Orderbücher nutzen?
+
+Zenbot unterstützt Orderbücher nicht nativ, weil:
+
+Zenbot ist alt (Version 4.x)
+
+es wurde hauptsächlich für Candlestick-Strategien gebaut
+
+es nutzt einfache Ticker- und Trade-Daten (Level 1 Market Data)
+
+
+ABER:
+Da Zenbot Open Source und in Node.js geschrieben ist, kannst du Orderbuch-Daten integrieren, wenn du die Engine modifizierst.
+
+
+---
+
+🧩 3. Wege, Orderbuch-Daten in Zenbot einzubauen
+
+Es gibt drei praktikable Wege:
+
+
+---
+
+✅ Methode A: Orderbuch über Exchange-API in Zenbot integrieren (empfohlen)
+
+Alle großen Börsen wie Binance, Kraken, Coinbase Pro, Bybit bieten Orderbuch-Feeds über WebSocket:
+
+Beispiel Binance Websocket Stream:
+
+wss://stream.binance.com:9443/ws/btcusdt@depth
+
+Du kannst:
+
+in zenbot/exchange/ dein Exchange-Modul erweitern
+
+Orderbuch-Updates abonnieren
+
+Daten in Zenbots historischen Feed einspeisen
+
+Strategien darauf zugreifen lassen
+
+
+Dazu musst du Code in diesen Bereichen anfassen:
+
+engine.js (Market Data Handling)
+
+lib/backfill (Datenhistorie)
+
+lib/exchange (API-Adapter)
+
+deine eigene strategy.js
+
+
+
+---
+
+✅ Methode B: Externer Orderbuch-Server → Zenbot Strategy Feed
+
+Zenbot kann externe Daten an eine Strategie übergeben.
+
+Beispiel:
+
+1. Node.js Script sammelt Orderbuchdaten (z. B. von Binance WebSocket).
+
+
+2. Script speichert relevante Levels (z. B. Top 20) in einer lokalen Redis/JSON-Datei.
+
+
+3. Deine Zenbot-Strategie liest diese Daten jede Sekunde.
+
+
+4. Die Strategie nutzt Orderbuch-Druck (Imbalance, Volume Walls, Spread etc.).
+
+
+
+So musst du Zenbot selbst kaum verändern.
+
+
+---
+
+✅ Methode C: Zenbot vollständig umbauen für „High-Frequency Orderbook Trading“
+
+Das ist möglich, aber sehr komplex:
+
+Zenbot war nie für HFT/Scalping ausgelegt
+
+dafür ist die Architektur zu langsam
+
+historischer Backtest kann Orderbücher gar nicht verarbeiten
+
+
+Wenn du echtes Orderbuch-Trading willst (Market Making, Arbitrage, High Frequency), solltest du eher Bots wie nutzen:
+
+Hummingbot (nativ Orderbook → Market Making)
+
+Freqtrade (kann Depth Data importieren)
+
+Custom Node/Python Bots (am flexibelsten)
+
+
+
+---
+
+📌 4. Was brauchst du, um Orderbuch-Trading in Zenbot zu nutzen?
+
+Kurz gesagt:
+
+✔ Eine Orderbuch-Quelle
+
+(Binance Websocket Depth Stream, Kraken Level 2, Coinbase Pro L2)
+
+✔ Einen Zenbot-Adapter
+
+damit Zenbot diese Daten in die Strategie einspeist
+
+✔ Eine Strategie, die Orderbuch-Signale auswertet
+
+z. B.:
+
+Orderbook Imbalance
+
+Bid-Ask Pressure
+
+Spoof Walls
+
+Spread Trading
+
+Market Microstructure Signals
+
+
+Wenn du willst, kann ich dir jede dieser Komponenten erstellen.
+
+
+---
+
+📣 Möchtest du als Nächstes:
+
+1. Ein Beispiel, wie man Binance Orderbücher in Node.js abruft?
+
+
+2. Ein fertiges Zenbot-Modul, das Orderbuchdaten einspeist?
+
+
+3. Eine Orderbuch-Strategie, die Buy/Sell-Druck bewertet?
+
+
+4. Oder lieber eine Erklärung, wie man Orderbuchdaten fürs Trading nutzt?
+
+
+
+Sag mir einfach, was du brauchst!
 
