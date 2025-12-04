@@ -1,6 +1,8 @@
 # FinTec und Zenbot Nutzung
 ChatGPT 
 
+Anmerkung: Auf dem Weg zum eigenen PayPal Bezahldienst, mit Geld zu Freunden weltweit zu senden oder zu empfangen bedeutet dies. 
+
 ## Was ist die FinTec, erkläre ausführlich und kann man diese mit Zenbot nutzen?
 
 Kurzantwort
