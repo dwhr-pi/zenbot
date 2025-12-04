@@ -1,6 +1,6 @@
 # MT4 & MT5 
 
-ChatGPT 
+ChatGPT: MT4 MT5 Binance Verbindung
 
 ## MT4 & MT5 können diese an die API von Binance angeschlossen werden und damit traden?
 
