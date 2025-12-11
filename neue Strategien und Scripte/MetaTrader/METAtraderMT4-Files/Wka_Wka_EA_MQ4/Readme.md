@@ -1,6 +1,6 @@
 # Waka Waka EA (Expert Advisor)
 
-Ich habe die Datei `Waka Waka EA MQ4.mq4` analysiert. Die Analyse zeigt, dass es sich um eine sehr komplexe **Grid- und Martingale-Strategie** handelt. 
+Ich habe die Datei `WakaWakaEAMQ4.mq4` analysiert. (Anmerkung: Diese mq4-Datei wird für Zenbot nicht selbst benötigt, wird nur zum Vergleich mit angeboten.) Die Analyse zeigt, dass es sich um eine sehr komplexe **Grid- und Martingale-Strategie** handelt. 
 
 Die Kernlogik basiert darauf, nach einem ersten Einstieg (basierend auf Bollinger Bändern und RSI) ein Raster von weiteren Trades zu eröffnen, wenn sich der Markt gegen die ursprüngliche Position bewegt. Dabei wird die Positionsgröße bei jedem neuen Trade erhöht (Martingale), um den durchschnittlichen Einstiegspreis zu verbessern und die Position mit einem kleinen Gewinn zu schließen, sobald eine leichte Markterholung eintritt.
 
