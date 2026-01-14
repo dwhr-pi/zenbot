@@ -1,3 +1,5 @@
+Zenbot Dwhr-pi Konvertierung
+
 # Zenbot unter Windows als klickbare EXE, optional mit Installer
 Phasen:
 Windows-Lauffähigkeit sicherstellen. 
@@ -6,7 +8,7 @@ Windows-Lauffähigkeit sicherstellen.
 
 Wir starten Phase 1.
 
-### Phase 1 – Zenbot unter Windows lauffähig machen (Pflicht)
+## Phase 1 – Zenbot unter Windows lauffähig machen (Pflicht)
 Bevor wir irgendwas paketieren, muss Zenbot normal unter Windows laufen.
 
 #### Voraussetzungen
@@ -33,10 +35,17 @@ Den Code kopieren
 node zenbot.js --help
 ```
 Wenn du eine Hilfe-Ausgabe siehst → alles gut.
+
 Falls Fehler:  
 * oft Pfad- oder npm-Abhängigkeitsprobleme.  
 * das lösen wir vor dem Packaging.  
 
+## Phase 2 – Zenbot in eine Windows-EXE verpacken
+Warum pkg?
+* stabil
+* weit verbreitet
+* erzeugt eine einzelne EXE
+* kein Node.js beim User nötig
 
 ### Schritt 3: pkg installieren
 Den Code kopieren
@@ -90,7 +99,7 @@ Den Code zum testen kopieren und in der CLI einfügen.
 zenbot-win.exe --help
 ```
 
-### Phase 3 – Optional: Klick-Installer (Setup.exe)
+## Phase 3 – Optional: Klick-Installer (Setup.exe)
 Wenn du willst:
 * Desktop-Icon
 * Startmenü
@@ -128,3 +137,15 @@ Firewall
 | Installer:   | 30–60 min.   |
 
 ➡️ Heute noch machbar
+
+### Nächster Schritt (konkret) 
+
+👉 Sag mir bitte als Nächstes:
+
+Welche Zenbot-Version genau?
+(Standard DeviaVir oder Fork?)
+Soll Zenbot:
+🔹 rein per Konsole
+🔹 oder per Doppelklick starten (Default-Config)?
+
+
