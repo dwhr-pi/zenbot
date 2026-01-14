@@ -25,3 +25,14 @@ cd zenbot
 npm install
 ```
 ⏱️ ~5–10 Minuten
+
+
+### Schritt 2: Testlauf (wichtig!)
+Den Code kopieren
+```Bash
+node zenbot.js --help
+```
+Wenn du eine Hilfe-Ausgabe siehst → alles gut.
+Falls Fehler:  
+* oft Pfad- oder npm-Abhängigkeitsprobleme.  
+* das lösen wir vor dem Packaging.  
