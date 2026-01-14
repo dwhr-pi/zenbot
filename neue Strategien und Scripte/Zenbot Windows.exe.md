@@ -20,7 +20,9 @@ Git for Windows
 
 ### Schritt 1: Zenbot holen
 In der PowerShell oder Git Bash:
-Den Code kopieren
+
+Den Code kopieren und auf Zenbot-Version anpassen.  
+(Standard DeviaVir oder Fork?)
 ```Bash
 git clone https://github.com/DeviaVir/zenbot.git
 cd zenbot
