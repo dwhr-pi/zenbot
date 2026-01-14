@@ -108,7 +108,7 @@ Ich sag dir das jetzt, damit du nicht reinläufst:
 
 Dateizugriffe
 * pkg-EXE läuft nicht im Projektordner
-* Lösung: process.cwd() sauber nutzen
+* Lösung: `process.cwd()` sauber nutzen
 Schreibrechte
 * Keine Logs in Program Files
 * Nutze %APPDATA%\Zenbot
@@ -116,13 +116,15 @@ Firewall
 * WebSocket-Verbindungen evtl. blockiert
 * Einmal erlauben lassen
 
-#### Realistische Zeitschätzung ab jetzt
+#### 
 
-|Schritt      | Zeit:        |
-|:-----------:|:------------:|
-|Windows-Test | 30–60 min.   |
-|pkg-Build    | 15 min.      |
-|Fixes×       | 1–2 h.       |
-|Installer:   | ×30–60 min.  |
+* Realistische Zeitschätzung ab jetzt *
+
+| Schritt      | Zeit:        |
+|:------------:|:------------:|
+| Windows-Test | 30–60 min.   |
+| pkg-Build    | 15 min.      |
+| Fixes        | 1–2 h.       |
+| Installer:   | 30–60 min.   |
 
 ➡️ Heute noch machbar
