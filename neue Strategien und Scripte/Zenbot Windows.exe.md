@@ -104,7 +104,8 @@ Ich liefere dir auf Wunsch:
 
 
 ### Typische Windows-Fallen (vorab wichtig)
-Ich sag dir das jetzt, damit du nicht reinläufst:
+Ich sag dir das jetzt, damit du nicht reinläufst:  
+
 Dateizugriffe
 * pkg-EXE läuft nicht im Projektordner
 * Lösung: process.cwd() sauber nutzen
@@ -117,11 +118,11 @@ Firewall
 
 #### Realistische Zeitschätzung ab jetzt
 
-|Schritt      | Zeit.        |
+|Schritt      | Zeit:        |
 |:-----------:|:------------:|
 |Windows-Test | 30–60 min.   |
-|pkg-Build.   | 15 min.      |
-|Fixes×.      | 1–2 h.       |
+|pkg-Build    | 15 min.      |
+|Fixes×       | 1–2 h.       |
 |Installer:   | ×30–60 min.  |
 
 ➡️ Heute noch machbar
