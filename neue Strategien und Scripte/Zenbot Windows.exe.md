@@ -142,10 +142,10 @@ Firewall
 
 👉 Sag mir bitte als Nächstes:
 
-Welche Zenbot-Version genau?
-(Standard DeviaVir oder Fork?)
-Soll Zenbot:
-🔹 rein per Konsole
-🔹 oder per Doppelklick starten (Default-Config)?
+Welche Zenbot-Version genau?  
+(Standard DeviaVir oder Fork?)  
+Soll Zenbot:  
+🔹 rein per Konsole. 
+🔹 oder per Doppelklick starten (Default-Config)?  
 
 
