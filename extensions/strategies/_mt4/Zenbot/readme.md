@@ -171,37 +171,38 @@ module.exports = function strategy (settings) {
 }
 ```
 Anleitung zum Erstellen der ZIP-Datei:
-Erstellen Sie einen Ordner namens Zenbot_Strategies.
+Erstellen Sie einen Ordner namens `Zenbot_Strategies`.
 
-Speichern Sie die obige Übersicht als README.md.
+Speichern Sie die obige Übersicht als `README.md`.
 
-Erstellen Sie einen Unterordner docs und speichern Sie dort die Beschreibungen der EAs als einzelne .md Dateien.
+Erstellen Sie einen Unterordner docs und speichern Sie dort die Beschreibungen der EAs als einzelne `.md` Dateien.
 
-Speichern Sie den JavaScript-Code als mq4_hybrid.js in einem Ordner strategies.
+Speichern Sie den JavaScript-Code als `mq4_hybrid.js` in einem Ordner `strategies`.
 
 Rechtsklick auf den Hauptordner -> "In ZIP-Archiv komprimieren".
 
-Hinweis zum Risikomanagement: Die MetaTrader-EAs nutzen oft "Martingale"-Elemente (Erhöhung der Lot-Größe). Zenbot ist standardmäßig auf prozentuale Bestände (--asset_capital) ausgelegt. Ich empfehle, bei der Konvertierung in Zenbot auf feste Positionsgrößen zu setzen, um Totalverluste bei Krypto-Volatilität zu vermeiden.
+Hinweis zum Risikomanagement: Die MetaTrader-EAs nutzen oft "Martingale"-Elemente (Erhöhung der Lot-Größe). Zenbot ist standardmäßig auf prozentuale Bestände (`--asset_capital`) ausgelegt. 
+Ich empfehle, bei der Konvertierung in Zenbot auf feste Positionsgrößen zu setzen, um Totalverluste bei Krypto-Volatilität zu vermeiden.
 
 
 Anleitung zum Erstellen der ZIP-Datei:
-Erstellen Sie einen Ordner namens Zenbot_Strategies.
+Erstellen Sie einen Ordner namens `Zenbot_Strategies`.
 
-Speichern Sie die obige Übersicht als README.md.
+Speichern Sie die obige Übersicht als `README.md`.
 
-Erstellen Sie einen Unterordner docs und speichern Sie dort die Beschreibungen der EAs als einzelne .md Dateien.
+Erstellen Sie einen Unterordner `docs` und speichern Sie dort die Beschreibungen der EAs als einzelne `.md` Dateien.
 
-Speichern Sie den JavaScript-Code als mq4_hybrid.js in einem Ordner strategies.
+Speichern Sie den JavaScript-Code als `mq4_hybrid.js` in einem Ordner `strategies`.
 
 Rechtsklick auf den Hauptordner -> "In ZIP-Archiv komprimieren".
 
-Hinweis zum Risikomanagement: Die MetaTrader-EAs nutzen oft "Martingale"-Elemente (Erhöhung der Lot-Größe). Zenbot ist standardmäßig auf prozentuale Bestände (--asset_capital) ausgelegt. Ich empfehle, bei der Konvertierung in Zenbot auf feste Positionsgrößen zu setzen, um Totalverluste bei Krypto-Volatilität zu vermeiden.  
+Hinweis zum Risikomanagement: Die MetaTrader-EAs nutzen oft "Martingale"-Elemente (Erhöhung der Lot-Größe). Zenbot ist standardmäßig auf prozentuale Bestände (`--asset_capital`) ausgelegt. Ich empfehle, bei der Konvertierung in Zenbot auf feste Positionsgrößen zu setzen, um Totalverluste bei Krypto-Volatilität zu vermeiden.  
 
 
 Hier ist die Struktur für die restlichen Strategien und die zentrale Übersichtsdatei.
 
-1. Die zentrale Übersichtsdatei (README.md)
-```
+**1. Die zentrale Übersichtsdatei (`README.md`)**
+```Markdown
 # Zenbot Strategy Collection (Converted from MQ4)
 
 Diese Sammlung enthält Handelsstrategien für Zenbot, die basierend auf 10 populären MetaTrader 4 Expert Advisors (EAs) konzipiert wurden.
@@ -221,10 +222,10 @@ Diese Sammlung enthält Handelsstrategien für Zenbot, die basierend auf 10 popu
 ```
 
 
-2. Strategie-Details: Expansion & Volatilität (Expansion_Strategies.md)
-Diese Datei beschreibt die Logik von FlyBot, Dream EA und Ghost EA.  
+2. Strategie-Details: Expansion & Volatilität (`Expansion_Strategies.md`)
+Diese Datei beschreibt die Logik von **FlyBot**, **Dream EA** und **Ghost EA**.  
 
-```
+```Markdown
 # Volatilitäts-Expansion (FlyBot & Ghost Logik)
 
 ### Funktionsweise
@@ -239,9 +240,10 @@ Diese Strategien messen die "Körpergröße" einer Kerze (Close - Open) im Verh�
 - `period`: 1m oder 5m
 ```
 
-3. Strategie-Details: Scalping & Speed (Scalper_Strategies.md)
-Diese Datei beschreibt Fast Scalper und Exclusive Scalping.  
-```
+3. Strategie-Details: Scalping & Speed (`Scalper_Strategies.md`)
+Diese Datei beschreibt **Fast Scalper** und **Exclusive Scalping**.
+  
+```Markdown
 # High-Speed Scalping
 
 ### Funktionsweise
@@ -255,8 +257,8 @@ Setzt Stop-Orders (Buy Stop / Sell Stop) kurz über das letzte High/Low. Sobald 
 Diese Strategie benötigt eine sehr niedrige Latenz zur Exchange.
 ```
 
-4. Strategie-Code für Zenbot (mq4_scalper.js)
-Hier ist ein zweites Code-Modul, das speziell die Fast Scalper Logik (Trailing & Offsets) abbildet:
+4. Strategie-Code für Zenbot (`mq4_scalper.js`)
+Hier ist ein zweites Code-Modul, das speziell die **Fast Scalper** Logik (Trailing & Offsets) abbildet:
 
 ```JavaScript
 // extensions/strategies/mq4_scalper.js
