@@ -17,16 +17,17 @@ Ich habe die bereitgestellten Dateien analysiert und die Kernlogiken sowie Param
 
 Diese Übersicht beschreibt die Transformation von 10 spezialisierten Expert Advisors (EAs) in Zenbot-kompatible Strategie-Skripte.  
 
-EA NameKernstrategieHauptparameter (Zenbot-Äquivalent)
-BigRise EAMulti-Paar Grid/Trendprofit_stop_pct, grid_step_pips 
-Best-GriderDynamisches Grid-Systemmin_periods, grid_multiplier 
-Boom EAScalping mit Zeitfilterrsi_periods, trade_window 
-Golden EAGold-spezifisches Gridmarkup_pct, max_sell_loss_pct 
-FlyBot (v1 & v2)Bar-Expansion / Breakoutbar_growth_threshold, trend_ema 
-Exclusive ScalpingKlassisches Scalpingtake_profit, stop_loss F
-ast ScalperVolatilitäts-Scalpingtraling_stop, pips_step 
-Dream EATrendfolgendema_fast, ema_slow 
-Ghost EAUnsichtbare Orders (Logic-Level)hidden_sl, logic_tp 
+| EA Name| Kernstrategie| Hauptparameter (Zenbot-Äquivalent)|
+|:------------------------------------:|------------------------------------|
+|BigRise EA| Multi-Paar Grid/Trendprofit_stop_pct, grid_step_pips |
+|Best-Grider| Dynamisches Grid-Systemmin_periods, grid_multiplier |
+|Boom EA| Scalping mit Zeitfilterrsi_periods, trade_window |
+|Golden EA| Gold-spezifisches Gridmarkup_pct, max_sell_loss_pct |
+|FlyBot (v1 & v2)| Bar-Expansion / Breakoutbar_growth_threshold, trend_ema |
+|Exclusive Scalping| Klassisches Scalpingtake_profit, stop_loss |
+|Fast Scalper| Volatilitäts-Scalpingtraling_stop, pips_step |
+|Dream EA| Trendfolgendema_fast, ema_slow |
+|Ghost EA| Unsichtbare Orders (Logic-Level)hidden_sl, logic_tp |
 
 ## Strategie-Details (Beispiele für Markdown-Dateien)  
 
