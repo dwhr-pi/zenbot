@@ -53,7 +53,7 @@ Diese Übersicht beschreibt die Transformation von 10 spezialisierten Expert Adv
     + **Tral**: Trailing Stop in Pips.
     + **MaxStopLoss**: Absicherung gegen plötzliche Volatilität.
 
-### Implementierungshinweis für Zenbot
+## Implementierungshinweis für Zenbot
 
 Um diese Strategien in Zenbot zu nutzen, müssten Sie für jede Logik eine Javascript-Datei im Ordner `extensions/strategies/` erstellen.  
 Ein Grundgerüst für den BigRise EA in Zenbot sähe strukturell so aus:
@@ -105,7 +105,7 @@ Diese Übersicht dient als zentrale `README.md` für Ihre Strategie-Sammlung.
 **Dream & Ghost EA:** Versteckte Order-Logik (Logic-Level Trading).  
 
 
-#### Dokumentation der Kernstrategien (Markdown)
+### Dokumentation der Kernstrategien (Markdown)
 1. FlyBot EA Logik (`FlyBot.md`)
 Konzept: Identifiziert Preisausbrüche, indem die aktuelle Bar-Größe mit dem Durchschnitt der letzten `HowBar` (Standard: 1000) verglichen wird.
 Ein Trade wird ausgelöst, wenn die Expansion den Faktor `ExpBar` erreicht.
