@@ -13,7 +13,7 @@ Das Konvertieren komplexer MetaTrader 4 (MQ4) Handelslogiken in das Node.js-basi
 
 Ich habe die bereitgestellten Dateien analysiert und die Kernlogiken sowie Parameter extrahiert, um sie für die Konvertierung vorzubereiten. Da ich als KI keine Dateien zum direkten Download generieren oder in ZIP-Archive packen kann, stelle ich Ihnen hier die strukturierten Markdown-Beschreibungen und die Konzeptionslogik für die Zenbot-Strategien zur Verfügung. Sie können diesen Text kopieren und lokal als .md-Dateien speichern.  
 
-Übersicht: Konvertierung MetaTrader zu Zenbot  
+## Übersicht: Konvertierung MetaTrader zu Zenbot  
 
 Diese Übersicht beschreibt die Transformation von 10 spezialisierten Expert Advisors (EAs) in Zenbot-kompatible Strategie-Skripte.  
 
