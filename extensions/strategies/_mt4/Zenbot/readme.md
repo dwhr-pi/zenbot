@@ -18,7 +18,7 @@ Ich habe die bereitgestellten Dateien analysiert und die Kernlogiken sowie Param
 Diese Übersicht beschreibt die Transformation von 10 spezialisierten Expert Advisors (EAs) in Zenbot-kompatible Strategie-Skripte.  
 
 | EA Name| Kernstrategie| Hauptparameter (Zenbot-Äquivalent)|
-|:------------------------------------:|------------------------------------|
+|:------------------------------------:|------------------------------------|------------------------------------|
 |BigRise EA| Multi-Paar Grid/Trendprofit_stop_pct, grid_step_pips |
 |Best-Grider| Dynamisches Grid-Systemmin_periods, grid_multiplier |
 |Boom EA| Scalping mit Zeitfilterrsi_periods, trade_window |
