@@ -33,30 +33,32 @@ Diese Übersicht beschreibt die Transformation von 10 spezialisierten Expert Adv
 
 1. BigRise EA (BigRise_EA.md)
 + **Logik:** Ein Multi-Währungs-System, das auf Preisbewegungen (Steps) reagiert. Es verwendet ein Grid-System, um Positionen bei Gegenbewegungen zu mitteln.
-+ **Zenbot-Umsetzung:** Nutzen des trend_ema Plugins mit angepasster neutral_rate.
++ **Zenbot-Umsetzung:** Nutzen des `trend_ema` Plugins mit angepasster `neutral_rate`.
 + **Wichtige Parameter:**
   + **Risk**: Bestimmt die Lot-Größe basierend auf dem Equity.
   + **MinPips**: Mindestabstand zwischen den Orders im Grid.  
 
 2. FlyBot EA v2.0 (FlyBot_EA_2.md)
-Logik: Basiert auf der Analyse einer bestimmten Anzahl von Bars (HowBar) und einer Expansionsrate (ExpBar).
-Zenbot-Umsetzung: Erfordert ein benutzerdefiniertes Modul, das die high/low Range der letzten n Perioden misst.
-Wichtige Parameter:ExpBar: Multiplikator für die Volatilitätsmessung.TimeStart / TimeEnd: Handelszeitfenster (03:00 - 23:00).
++ **Logik:** Basiert auf der Analyse einer bestimmten Anzahl von Bars (`HowBar`) und einer Expansionsrate (`ExpBar`).
++ **Zenbot-Umsetzung:** Erfordert ein benutzerdefiniertes Modul, das die `high/low` Range der letzten `n` Perioden misst.
++ **Wichtige Parameter:**
+  + **ExpBar**: Multiplikator für die Volatilitätsmessung.
+  + **TimeStart / TimeEnd**: Handelszeitfenster (03:00 - 23:00).
 
-3. Fast Scalper (Fast_Scalper.md)
-Logik: Ein hochfrequentes Scalping-System mit Trailing-Stop-Funktion.
-Zenbot-Umsetzung: Einsatz der speed-Strategie mit sehr kurzen Check-Intervallen.
-Wichtige Parameter:
-Tral: Trailing Stop in Pips.
-MaxStopLoss: Absicherung gegen plötzliche Volatilität.
+4. Fast Scalper (Fast_Scalper.md)
++ **Logik:** Ein hochfrequentes Scalping-System mit Trailing-Stop-Funktion.
++ **Zenbot-Umsetzung:** Einsatz der speed-Strategie mit sehr kurzen Check-Intervallen.
++ **Wichtige Parameter:**
+  + **Tral**: Trailing Stop in Pips.
+  + **MaxStopLoss**: Absicherung gegen plötzliche Volatilität.
 
 ### Implementierungshinweis für Zenbot
 
-Um diese Strategien in Zenbot zu nutzen, müssten Sie für jede Logik eine Javascript-Datei im Ordner `extensions/strategies/` erstellen. 
+Um diese Strategien in Zenbot zu nutzen, müssten Sie für jede Logik eine Javascript-Datei im Ordner `extensions/strategies/` erstellen.  
 Ein Grundgerüst für den BigRise EA in Zenbot sähe strukturell so aus:
 
 BigRise.js
-```
+```JavaScript
 // Zenbot-Struktur-Beispiel für BigRise Logik
 module.exports = function strategy(settings) {
   return {
@@ -78,7 +80,7 @@ module.exports = function strategy(settings) {
 ```
 
 ### Zusammenfassung der Konvertierungsschritte:
-Dateien erstellen: Speichern Sie die obigen Beschreibungen als .md Dateien.
+Dateien erstellen: Speichern Sie die obigen Beschreibungen als `.md` Dateien.
 
 JS-Programmierung: Da Zenbot JavaScript nutzt, müssen die mathematischen Formeln aus den MQ4-Dateien (z.B. Lot = Risk * AccountFreeMargin) in JS-Code übersetzt werden.
 
@@ -121,7 +123,7 @@ Um diese Strategien in Zenbot zu nutzen, erstellen Sie im Ordner `extensions/str
 Hier ist die für Zenbot übersetzte Kernlogik der FlyBot-Serie:
 
 
-```
+```JavaScript
 // extensions/strategies/mq4_hybrid.js
 var tb = require('timebucket')
 
@@ -253,7 +255,7 @@ Diese Strategie benötigt eine sehr niedrige Latenz zur Exchange.
 4. Strategie-Code für Zenbot (mq4_scalper.js)
 Hier ist ein zweites Code-Modul, das speziell die Fast Scalper Logik (Trailing & Offsets) abbildet:
 
-```
+```JavaScript
 // extensions/strategies/mq4_scalper.js
 module.exports = function strategy (settings) {
   return {
@@ -322,7 +324,8 @@ Der Golden EA ist speziell für hohe Volatilität (XAUUSD) kalibriert und nutzt 
 
 2. Strategie-Code für Zenbot: Grid-Modul (mq4_grid.js)
 Dies ist die technische Umsetzung der Grid-Logik (inspiriert durch BigRise/Best-Grider) für Zenbot:  
-```
+
+```JavaScript
 // extensions/strategies/mq4_grid.js
 module.exports = function strategy (settings) {
   return {
@@ -365,7 +368,8 @@ module.exports = function strategy (settings) {
 ```
 
 3. Finale Projektstruktur für Ihre ZIP-Datei
-Wenn Sie das Paket nun finalisieren, sollte die Struktur wie folgt aussehen:  
+Wenn Sie das Paket nun finalisieren, sollte die Struktur wie folgt aussehen:
+ 
 ```
 /Zenbot_MQ4_Conversion/
 ├── README.md (Zentrale Übersicht)
@@ -465,7 +469,7 @@ Hier ist das letzte wichtige Modul für Ghost EA und Dream EA, gefolgt von der A
 1. Strategie-Code für Zenbot: Logic-Level Modul (mq4_ghost.js)
 Der Ghost EA und Dream EA zeichnen sich dadurch aus, dass sie keine sichtbaren Pending Orders nutzen, sondern "im Stillen" Levels beobachten.
 
-```
+```JavaScript
 // extensions/strategies/mq4_ghost.js
 module.exports = function strategy (settings) {
   return {
@@ -510,7 +514,7 @@ Hier ist das letzte wichtige Modul für Ghost EA und Dream EA, gefolgt von der A
 1. Strategie-Code für Zenbot: Logic-Level Modul (mq4_ghost.js)
 Der Ghost EA und Dream EA zeichnen sich dadurch aus, dass sie keine sichtbaren Pending Orders nutzen, sondern "im Stillen" Levels beobachten.
 
-```
+```JavaScript
 JavaScript// extensions/strategies/mq4_ghost.js
 module.exports = function strategy (settings) {
   return {
