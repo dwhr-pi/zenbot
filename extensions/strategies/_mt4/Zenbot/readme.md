@@ -32,25 +32,26 @@ Diese Übersicht beschreibt die Transformation von 10 spezialisierten Expert Adv
 ## Strategie-Details (Beispiele für Markdown-Dateien)  
 
 1. BigRise EA (BigRise_EA.md)
-+ **Logik:** Ein Multi-Währungs-System, das auf Preisbewegungen (Steps) reagiert. Es verwendet ein Grid-System, um Positionen bei Gegenbewegungen zu mitteln.
-+ **Zenbot-Umsetzung:** Nutzen des `trend_ema` Plugins mit angepasster `neutral_rate`.
-+ **Wichtige Parameter:**
-  + **Risk**: Bestimmt die Lot-Größe basierend auf dem Equity.
-  + **MinPips**: Mindestabstand zwischen den Orders im Grid.  
+  + **Logik:** Ein Multi-Währungs-System, das auf Preisbewegungen (Steps) reagiert. Es verwendet ein Grid-System, um Positionen
+     bei Gegenbewegungen zu mitteln.
+  + **Zenbot-Umsetzung:** Nutzen des `trend_ema` Plugins mit angepasster `neutral_rate`.
+  + **Wichtige Parameter:**
+    + **Risk**: Bestimmt die Lot-Größe basierend auf dem Equity.
+    + **MinPips**: Mindestabstand zwischen den Orders im Grid.  
 
 2. FlyBot EA v2.0 (FlyBot_EA_2.md)
-+ **Logik:** Basiert auf der Analyse einer bestimmten Anzahl von Bars (`HowBar`) und einer Expansionsrate (`ExpBar`).
-+ **Zenbot-Umsetzung:** Erfordert ein benutzerdefiniertes Modul, das die `high/low` Range der letzten `n` Perioden misst.
-+ **Wichtige Parameter:**
-  + **ExpBar**: Multiplikator für die Volatilitätsmessung.
-  + **TimeStart / TimeEnd**: Handelszeitfenster (03:00 - 23:00).
+  + **Logik:** Basiert auf der Analyse einer bestimmten Anzahl von Bars (`HowBar`) und einer Expansionsrate (`ExpBar`).
+  + **Zenbot-Umsetzung:** Erfordert ein benutzerdefiniertes Modul, das die `high/low` Range der letzten `n` Perioden misst.
+  + **Wichtige Parameter:**
+    + **ExpBar**: Multiplikator für die Volatilitätsmessung.
+    + **TimeStart / TimeEnd**: Handelszeitfenster (03:00 - 23:00).
 
-4. Fast Scalper (Fast_Scalper.md)
-+ **Logik:** Ein hochfrequentes Scalping-System mit Trailing-Stop-Funktion.
-+ **Zenbot-Umsetzung:** Einsatz der speed-Strategie mit sehr kurzen Check-Intervallen.
-+ **Wichtige Parameter:**
-  + **Tral**: Trailing Stop in Pips.
-  + **MaxStopLoss**: Absicherung gegen plötzliche Volatilität.
+3. Fast Scalper (Fast_Scalper.md)
+  + **Logik:** Ein hochfrequentes Scalping-System mit Trailing-Stop-Funktion.
+  + **Zenbot-Umsetzung:** Einsatz der speed-Strategie mit sehr kurzen Check-Intervallen.
+  + **Wichtige Parameter:**
+    + **Tral**: Trailing Stop in Pips.
+    + **MaxStopLoss**: Absicherung gegen plötzliche Volatilität.
 
 ### Implementierungshinweis für Zenbot
 
