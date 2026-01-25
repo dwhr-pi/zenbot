@@ -1,5 +1,5 @@
-# This files for Zenbot
+# Diese Dateien sind für Zenbot. 
 
-This files are converted from mt4 folder for useage in Zenbot `strategies` folder. 
-Place them there and check them out. 
-They are not tested at the moment.
+Diese Dateien wurden aus dem MT4-Ordner für die Verwendung im Zenbot-Ordner `strategies` konvertiert. 
+Platzieren Sie sie dort und testen Sie sie. 
+Sie sind derzeit noch nicht getestet.
