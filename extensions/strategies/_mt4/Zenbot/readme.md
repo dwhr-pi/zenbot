@@ -32,11 +32,11 @@ Diese Übersicht beschreibt die Transformation von 10 spezialisierten Expert Adv
 ## Strategie-Details (Beispiele für Markdown-Dateien)  
 
 1. BigRise EA (BigRise_EA.md)
-Logik: Ein Multi-Währungs-System, das auf Preisbewegungen (Steps) reagiert. Es verwendet ein Grid-System, um Positionen bei Gegenbewegungen zu mitteln.
-Zenbot-Umsetzung: Nutzen des trend_ema Plugins mit angepasster neutral_rate.
-Wichtige Parameter:
-+ **Risk**: Bestimmt die Lot-Größe basierend auf dem Equity.
-+ *MinPips**: Mindestabstand zwischen den Orders im Grid.  
++ **Logik:** Ein Multi-Währungs-System, das auf Preisbewegungen (Steps) reagiert. Es verwendet ein Grid-System, um Positionen bei Gegenbewegungen zu mitteln.
++ **Zenbot-Umsetzung:** Nutzen des trend_ema Plugins mit angepasster neutral_rate.
++ **Wichtige Parameter:**
+  + **Risk**: Bestimmt die Lot-Größe basierend auf dem Equity.
+  + **MinPips**: Mindestabstand zwischen den Orders im Grid.  
 
 2. FlyBot EA v2.0 (FlyBot_EA_2.md)
 Logik: Basiert auf der Analyse einer bestimmten Anzahl von Bars (HowBar) und einer Expansionsrate (ExpBar).
