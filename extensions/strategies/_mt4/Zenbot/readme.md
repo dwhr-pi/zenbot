@@ -81,49 +81,51 @@ module.exports = function strategy(settings) {
 ```
 
 ### Zusammenfassung der Konvertierungsschritte:
-Dateien erstellen: Speichern Sie die obigen Beschreibungen als `.md` Dateien.
+**Dateien erstellen:** Speichern Sie die obigen Beschreibungen als `.md` Dateien.
 
-JS-Programmierung: Da Zenbot JavaScript nutzt, müssen die mathematischen Formeln aus den MQ4-Dateien (z.B. Lot = Risk * AccountFreeMargin) in JS-Code übersetzt werden.
+**JS-Programmierung:** Da Zenbot JavaScript nutzt, müssen die mathematischen Formeln aus den MQ4-Dateien (z.B. `Lot = Risk * AccountFreeMargin`) in JS-Code übersetzt werden.
 
 
-Backtesting: Nutzen Sie zenbot backtest, um die Parameter ProfitPips und MinPips für Krypto-Märkte zu optimieren, da die MQ4-Originale primär für Forex (EURUSD, etc.) ausgelegt sind.
+**Backtesting:** Nutzen Sie `zenbot backtest`, um die Parameter `ProfitPips` und `MinPips` für Krypto-Märkte zu optimieren, da die MQ4-Originale primär für Forex (EURUSD, etc.) ausgelegt sind.
 
 
 
 ### Projekt-Übersicht: MetaTrader zu Zenbot Konvertierung
-Diese Übersicht dient als zentrale README.md für Ihre Strategie-Sammlung.
+Diese Übersicht dient als zentrale `README.md` für Ihre Strategie-Sammlung.
 
 #### Enthaltene Strategien
-BigRise & Best-Grider: Grid-basierte Accumulation-Strategien.
+**BigRise & Best-Grider:** Grid-basierte Accumulation-Strategien.  
 
-FlyBot (v1 & v2): Volatilitäts-Breakout basierend auf Bar-Expansion.
+**FlyBot (v1 & v2):** Volatilitäts-Breakout basierend auf Bar-Expansion.  
 
-Fast Scalper & Exclusive Scalping: Hochfrequenz-Trading mit engen Trailing-Stops.
+**Fast Scalper & Exclusive Scalping:** Hochfrequenz-Trading mit engen Trailing-Stops.  
 
-Boom & Golden EA: Trend-Scalping mit spezifischen RSI/Zeit-Filtern.
+**Boom & Golden EA:** Trend-Scalping mit spezifischen RSI/Zeit-Filtern.  
 
-Dream & Ghost EA: Versteckte Order-Logik (Logic-Level Trading).
+**Dream & Ghost EA:** Versteckte Order-Logik (Logic-Level Trading).  
+
 
 #### Dokumentation der Kernstrategien (Markdown)
-1. FlyBot EA Logik (FlyBot.md)
-Konzept: Identifiziert Preisausbrüche, indem die aktuelle Bar-Größe mit dem Durchschnitt der letzten HowBar (Standard: 1000) verglichen wird. Ein Trade wird ausgelöst, wenn die Expansion den Faktor ExpBar erreicht.
+1. FlyBot EA Logik (`FlyBot.md`)
+Konzept: Identifiziert Preisausbrüche, indem die aktuelle Bar-Größe mit dem Durchschnitt der letzten `HowBar` (Standard: 1000) verglichen wird.
+Ein Trade wird ausgelöst, wenn die Expansion den Faktor `ExpBar` erreicht.
 
-Zenbot-Vorteil: Schnelle Ausführung über WebSockets statt Tick-Abfrage.
+**Zenbot-Vorteil:** Schnelle Ausführung über WebSockets statt Tick-Abfrage.
 
-Parameter: exp_factor (ersetzt ExpBar), lookback_size (ersetzt HowBar).
+**Parameter:** `exp_factor` (ersetzt ExpBar), `lookback_size` (ersetzt HowBar).
 
 2. BigRise Grid Logik (BigRise.md)
-Konzept: Eröffnet Positionen in festen Abständen (MinPips), um einen Durchschnittspreis zu bilden. Ziel ist das Erreichen eines Gesamtprofits von ProfitPips.
+**Konzept:** Eröffnet Positionen in festen Abständen (`MinPips`), um einen Durchschnittspreis zu bilden. Ziel ist das Erreichen eines Gesamtprofits von `ProfitPips`.
 
-Zenbot-Vorteil: Besseres Management von Teilverkäufen (Partial Fills).
+**Zenbot-Vorteil:** Besseres Management von Teilverkäufen (Partial Fills).
 
-Parameter: grid_distance, take_profit_pct.
+**Parameter:** `grid_distance`, `take_profit_pct`.
 
 ### 💻 Zenbot Strategie-Code (Beispiel FlyBot)
-Um diese Strategien in Zenbot zu nutzen, erstellen Sie im Ordner `extensions/strategies/` eine Datei namens mq4_hybrid.js. 
+Um diese Strategien in Zenbot zu nutzen, erstellen Sie im Ordner `extensions/strategies/` eine Datei namens `mq4_hybrid.js`. 
 Hier ist die für Zenbot übersetzte Kernlogik der FlyBot-Serie:
 
-
+mq4_hybrid.js
 ```JavaScript
 // extensions/strategies/mq4_hybrid.js
 var tb = require('timebucket')
