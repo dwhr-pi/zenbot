@@ -19,15 +19,15 @@ Diese Übersicht beschreibt die Transformation von 10 spezialisierten Expert Adv
 
 | EA Name| Kernstrategie| Hauptparameter (Zenbot-Äquivalent)|
 |:------------------------------------:|------------------------------------|------------------------------------|
-|BigRise EA| Multi-Paar Grid/Trendprofit_stop_pct, grid_step_pips |
-|Best-Grider| Dynamisches Grid-Systemmin_periods, grid_multiplier |
-|Boom EA| Scalping mit Zeitfilterrsi_periods, trade_window |
-|Golden EA| Gold-spezifisches Gridmarkup_pct, max_sell_loss_pct |
-|FlyBot (v1 & v2)| Bar-Expansion / Breakoutbar_growth_threshold, trend_ema |
-|Exclusive Scalping| Klassisches Scalpingtake_profit, stop_loss |
-|Fast Scalper| Volatilitäts-Scalpingtraling_stop, pips_step |
-|Dream EA| Trendfolgendema_fast, ema_slow |
-|Ghost EA| Unsichtbare Orders (Logic-Level)hidden_sl, logic_tp |
+|BigRise EA| Multi-Paar Grid/Trend| profit_stop_pct, grid_step_pips |
+|Best-Grider| Dynamisches Grid-System| min_periods, grid_multiplier |
+|Boom EA| Scalping mit Zeitfilter| rsi_periods, trade_window |
+|Golden EA| Gold-spezifisches Grid| markup_pct, max_sell_loss_pct |
+|FlyBot (v1 & v2)| Bar-Expansion / Breakout| bar_growth_threshold, trend_ema |
+|Exclusive Scalping| Klassisches Scalping| take_profit, stop_loss |
+|Fast Scalper| Volatilitäts-Scalping| traling_stop, pips_step |
+|Dream EA| Trendfolgend| ema_fast, ema_slow |
+|Ghost EA| Unsichtbare Orders (Logic-Level)| hidden_sl, logic_tp |
 
 ## Strategie-Details (Beispiele für Markdown-Dateien)  
 
